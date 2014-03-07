@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no" />
+		<title>App Insa Alpha 1</title>		
+		
+		<link rel="stylesheet" href="js/jquery.mobile-1.4.2.css" />
+		<link rel="stylesheet" href="css/custom.css" />
+		
+		<script src="cordova.js"></script>
+		<script src="js/jquery-1.11.0.min.js"></script>
+		<script src="js/jquery.mobile-1.4.2.min.js"></script>
+		
+		
+		<!--<script src="cordova_plugins.js"></script>-->
+		<script>
+			$.support.cors = true;
+			$.mobile.allowCrossDomainPages = true;
+			$.mobile.phonegapNavigationEnable = true;
+			//$.mobile.buttonMarkup.hoverDelay = 100;
+			//$.mobile.hoverDelay = 50;
+			
+			document.addEventListener("deviceReady", deviceReady, false);
+			function deviceReady() {
+				
+			}
+			
+			
+		</script>
+	</head>
+	<body>
+		<div id="index_page" data-role="page" data-theme="b">
+			
+			
+				<header data-role="header" data-position="fixed">
+					
+					<h1><img style="height:1.3em" src="img/icons/insa_toulouse.svg" /></h1>
+					<a href="#popupMenu" data-transition="none" data-rel="popup" data-icon="ellipsis-v" data-role="button" class="ui-btn-right big-btn ui-nodisc-icon big-icon" data-corners="false"  data-iconpos="notext"></a>
+					
+					
+					
+				</header>
+				
+				<section data-role="content" >
+					
+					<div class="ui-grid-b home_icons">
+						<!--<div class="ui-block-a home_icon"><a href="pres.html" data-transition="pop" class="main_menu_link"><img style="width:64px;height:64px" src="img/icons/presentation.svg" /></a><br />Votre école</div>
+						<div class="ui-block-b home_icon"><a href="actu.html" data-ajax="false" class="main_menu_link"><img style="width:64px;height:64px" src="img/icons/actualite.svg" /></a><br />Actualités</div>
+						<div class="ui-block-c home_icon"><a href="edt.html" data-transition="pop" class="main_menu_link"><img style="width:64px;height:64px" src="img/icons/emploidutemps.svg" /></a><br />Emploi du temps</div>
+						<div class="ui-block-a home_icon"><a href="meteo.html" class="main_menu_link"><img style="width:64px;height:64px" src="img/icons/meteo.svg" /></a><br />Météo</div>
+						<div class="ui-block-b home_icon"><a href="ru.html" class="main_menu_link"><img style="width:64px;height:64px" src="img/icons/self.svg" /></a><br />Menu Self</div>
+						<div class="ui-block-c home_icon"><a href="plan.html" data-ajax="false" class="main_menu_link"><img style="width:64px;height:64px" src="img/icons/plan.svg" /></a><br />Plan d'accès</div>
+						<div class="ui-block-a home_icon"><a href="bib.html" class="main_menu_link"></a><img style="width:64px;height:64px" src="img/icons/bibi.svg" /></a><br />Bib'INSA</div>
+						<div class="ui-block-b home_icon"><a href="wifi.html" class="main_menu_link"><img style="width:64px;height:64px" src="img/icons/wifi.svg" /></a><br />WiFi</div>
+						<div class="ui-block-c home_icon"><a href="tweets.html" class="main_menu_link"><img style="width:64px;height:64px" src="img/icons/reseau.svg" /></a><br />Réseaux Sociaux</div>
+						-->
+						<div class="ui-block-a home_icon"><a href="pres.html" data-transition="pop" class="main_menu_link"><img style="width:64px;height:64px" src="img/icons/presentation.svg" /></a>Votre école</div>
+						<div class="ui-block-b home_icon"><a href="actu.html" data-ajax="false" class="main_menu_link"><img style="width:64px;height:64px" src="img/icons/actualite.svg" /></a>Actualités</div>
+						<div class="ui-block-c home_icon"><a href="edt.html" data-transition="pop" class="main_menu_link"><img style="width:64px;height:64px" src="img/icons/emploidutemps.svg" /></a>Emploi du temps</div>
+						<div class="ui-block-a home_icon"><a href="meteo.html" class="main_menu_link"><img style="width:64px;height:64px" src="img/icons/meteo.svg" /></a>Météo</div>
+						<div class="ui-block-b home_icon"><a href="ru.html" class="main_menu_link"><img style="width:64px;height:64px" src="img/icons/self.svg" /></a>Menu Self</div>
+						<div class="ui-block-c home_icon"><a href="plan.html" data-ajax="false" class="main_menu_link"><img style="width:64px;height:64px" src="img/icons/plan.svg" /></a>Plan d'accès</div>
+						<div class="ui-block-a home_icon"><a href="bib.html" class="main_menu_link"><img style="width:64px;height:64px" src="img/icons/bibi.svg" /></a>Bib'INSA</div>
+						<div class="ui-block-b home_icon"><a href="wifi.html" class="main_menu_link"><img style="width:64px;height:64px" src="img/icons/wifi.svg" /></a>WiFi</div>
+						<div class="ui-block-c home_icon"><a href="tweets.html" class="main_menu_link"><img style="width:64px;height:64px" src="img/icons/reseau.svg" /></a>Réseaux Sociaux</div>
+						
+					</div><!-- /grid-c -->
+									
+					
+				</section>
+				
+				<!-- /panel -->
+				
+				<div data-role="popup" id="popupMenu" data-theme="a" data-corners="false" style="border:none" >
+						<ul data-role="listview" data-inset="true" data-corners="false" style="min-width:210px;">
+							
+							<li data-icon="phone"><a href="contact.html" data-transition="pop" >Contact</a></li>
+							<li data-icon="info"><a href="about.html" data-transition="pop" >A propos</a></li>
+							<li data-icon="power"><a id="quit" >Quitter</a></li>
+						</ul>
+				</div>
+				
+				
+				<script>
+					
+					$(document).on('pagecreate', function() {
+						
+						$('#quit').on('vclick',function(){
+						
+							navigator.app.exitApp();
+						});
+					
+					});
+				</script>
+			
+		</div>
+		
+	</body>
+</html>

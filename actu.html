@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>App Insa Alpha 1</title>		
+		<meta name="viewport" content="width=device-width, user-scalable=no" />
+		
+		<link rel="stylesheet" href="js/jquery.mobile-1.4.2.css" />
+		<link rel="stylesheet" href="css/custom.css" />
+		<!--<script src="js/index.js"></script>-->
+		<script src="cordova.js"></script>
+		<script src="js/jquery-1.11.0.min.js"></script>
+		<script src="js/jquery.mobile-1.4.2.min.js"></script>
+		
+		<!--<script src="cordova_plugins.js"></script>-->
+		<script>
+		
+			$.support.cors = true;
+			$.mobile.allowCrossDomainPages = true;
+			$.mobile.phonegapNavigationEnable = true;
+			$(function() { 
+				$.mobile.defaultHomeScroll = 0;
+			});
+			$(document).bind("mobileinit", function() {
+			  $.support.touchOverflow = true;
+			  $.mobile.touchOverflowEnabled = true;
+			});
+			
+		</script>
+
+	</head>
+	<body>
+		<div data-role="page" id="actu_page"  data-theme="b" data-dom-cache="true">
+			
+			<header data-role="header" data-position="fixed">
+				<a href="index.html" data-icon="gohome" data-role="button" data-iconpos="notext" class="big-btn ui-nodisc-icon big-icon" data-corners="false" data-transition="pop" data-direction="reverse">Retour</a>
+				<h1>Actualités</h1>
+				<a href="#right-panel" data-icon="menudvp" data-iconpos="notext" class="big-btn ui-nodisc-icon big-icon" data-corners="false">Menu</a>
+			</header>
+			
+			<section data-role="content">
+			
+				<p style="text-align:center" id="loader" ><img src="js/images/ajax-loader.gif" /></p>
+				<p id="error_message" style="text-align:center;display:none;"></p>
+				<ul data-role="listview" id="rss-feed"></ul>
+								
+				
+			</section>
+			<!-- /panel -->
+			<div data-role="panel" id="right-panel" data-position="right" data-position-fixed="true" data-display="overlay" data-theme="b">
+				<div class="ui-panel-inner">	
+					<ul data-role="listview" style="z-index=-100" >
+						<li data-role="list-divider">Aller à la rubrique..</li>
+						<li data-icon="home"><a href="index.html" data-transition="pop" data-direction="reverse">Accueil</a></li>
+						<li data-icon="bullets"><a href="pres.html" data-transition="flow">Présentation</a></li>
+						<li data-icon="rss"><a href="actu.html" data-ajax="false">Actu</a></li>
+						<li data-icon="calendar"><a href="edt.html" data-transition="flow">Emploi du Temps</a></li>
+						<li data-icon="cloud"><a href="meteo.html" data-transition="flow">Météo</a></li>
+						<li data-icon="cutlery"><a href="ru.html" data-transition="flow">Menu Self</a></li>
+						<li data-icon="twitter"><a href="tweets.html" data-transition="flow">Réseaux Sociaux</a></li>
+						<li data-icon="location"><a href="plan.html" data-transition="flow">Plan d'accès</a></li>
+						<li data-icon="book"><a href="bib.html" data-transition="flow">BIB in Sports</a></li>
+						<li data-icon="wifi"><a href="wifi.html" data-transition="flow">Configurer Wifi</a></li>
+						<li data-icon="phone"><a href="contact.html" data-transition="flow">Contact</a></li>
+					</ul>
+				</div>
+			</div>
+		
+		
+
+		
+		<script>
+			$(document).one('pagecreate', '#actu_page', function() {
+				
+				$.mobile.defaultHomeScroll = 0;
+				
+				//$.get('http://127.0.0.1/rss.xml', function(data){
+				$.get('http://www.insa-toulouse.fr/plugins/web/default/fr/filter/org.ametys.web.accueil.RSS/rss.xml', function(data){
+					//var i = 1;
+					//parcours des noeuds "item" du flux rss
+					$(data).find('item').each(function(){
+						//if(i>5)return false;
+						//création du sommaire
+						//recupération des différentes infos
+						var article = $(this);
+						var titre = article.find('title').text();
+						var description = article.find('description').text();
+						var description = $('<div>'+description+'</div>');
+						
+						
+						if(description.find('img:first').attr('src')){
+							var img = description.find('img:first').attr('src');
+						}else{
+							var img = 'img/icons/ban.svg';
+						}
+						
+						var main_content = description.filter('div:not(img)').text();
+						
+						if($.trim(main_content)) main_content = " - "+main_content;
+						var url = article.find('guid').text();
+						var date = article.find('pubDate').text();
+						var dateArr = date.split(' ');
+						
+						//contenu du résumé de l'actu dans le sommaire
+						var content = '<li><a href="#rss_page" data-transition="slide"><img src="'+img+'" /><h2>'+titre+'</h2><p><small>'+dateArr[1]+' '+dateArr[2]+' '+dateArr[3]+'</small>'+main_content+'</p></a></li>';
+						
+						
+						//contenu complet de la page
+						var newPage = '<div style="display:none" class="rss_content"><h2>'+titre+'</h2><p><p><small>'+dateArr[1]+' '+dateArr[2]+' '+dateArr[3]+' - '+dateArr[4]+'</small></p><p>'+description.html()+'</p><p style="clear:both;text-align:right;margin-top:10px"><a style="text-decoration:none" href="#" onclick="navigator.app.loadUrl(\''+url+'\',{ openExternal:true })" rel="external" >&raquo; Voir sur le site Internet</a></p></div>';
+						$("#actu_page #loader").hide();
+						$('#rss-feed').append(content+newPage);
+						
+
+						//i++;
+					});
+					//$.mobile.loading('hide');
+					$('#rss-feed').listview('refresh');
+					
+					//clic sur une actu ouvre une page plus détaillée de l'actu
+					$('#rss-feed li a').on('vclick',function(){
+						$('#rss_page #rss_content').html($(this).parent().next().html());
+						//$.mobile.changePage('#rss_page',{allowSamePageTransition : true,reloadPage:false,changeHash:true,transition:"slide"});
+						
+					});
+					
+				}).fail(function(){
+					$("#actu_page #loader").hide();
+					$('#actu_page #error_message').html('Erreur de chargement du flux d\'actu').show();
+				});
+				
+				
+				/*$( "#actu_page" ).on( "swipeleft", function() {
+					
+						// We check if there is no open panel on the page because otherwise
+						// a swipe to close the left panel would also open the right panel (and v.v.).
+						// We do this by checking the data that the framework stores on the page element (panel: open).
+						if ( $.mobile.activePage.jqmData( "panel" ) !== "open" ) {
+							
+								$( "#right-panel" ).panel( "open" );
+							
+						}
+				});*/
+			});
+		</script>
+		
+		
+		</div>
+		<div data-role="page" id="rss_page"  data-theme="b">
+			<header data-role="header">
+				<a href="#actu_page" data-icon="bback" data-role="button" data-iconpos="notext" class="big-btn ui-nodisc-icon big-icon" data-corners="false" data-transition="slide" data-direction="reverse">Retour</a>
+				<h1>Actualité</h1>
+			</header>
+			<section data-role="content" id="rss_content"></section>
+		</div>
+		
+	</body>
+</html>

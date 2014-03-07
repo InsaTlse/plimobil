@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>App Insa Alpha 1</title>		
+		<meta name="viewport" content="width=device-width, user-scalable=no" />
+		
+		<link rel="stylesheet" href="js/jquery.mobile-1.4.2.css" />
+		<link rel="stylesheet" href="css/custom.css" />
+		<!--<script src="js/index.js"></script>-->	
+		<script src="cordova.js"></script>
+		<script src="js/jquery-1.11.0.min.js"></script>
+		<script src="js/jquery.mobile-1.4.2.min.js"></script>
+	
+		<!--<script src="cordova_plugins.js"></script>-->
+		<script>
+			$.support.cors = true;
+			$.mobile.allowCrossDomainPages = true;
+			$.mobile.phonegapNavigationEnable = true;
+			
+			
+		</script>
+
+	</head>
+	<body>
+		<div data-role="page" id="bib_page" data-theme="b" data-dom-cache="true">
+			
+			<header data-role="header" data-position="fixed">
+				<a href="index.html" data-icon="gohome" data-role="button" data-iconpos="notext" class="big-btn ui-nodisc-icon big-icon" data-corners="false" data-transition="pop" data-direction="reverse">Retour</a>
+				<h1>Bib'INSA</h1>
+				<a href="#right-panel" data-icon="menudvp" data-iconpos="notext" class="big-btn ui-nodisc-icon big-icon" data-corners="false">Menu</a>
+			</header>
+			
+			<section data-role="content" >
+				
+				<div style="height:280px; text-align:center" onclick="navigator.app.loadUrl('http://www.pinterest.com/bibinsatlse/nouveautés/',{ openExternal:true })" >
+					<img style="height:32px" src="img/icons/pinterest.svg" /><br />
+					<div id="pinterest_widget" style="pointer-events:none">
+						<a data-pin-do="embedBoard" href="http://www.pinterest.com/bibinsatlse/nouveautés/" data-pin-scale-width="100" data-pin-scale-height="100" data-pin-board-width="720"><img src="js/images/ajax-loader.gif" /></a>
+						<!-- Please call pinit.js only once per page -->
+						</div>
+					<script type="text/javascript">!function(a,b,c){var d,e,f;f="PIN_"+~~((new Date).getTime()/864e5),a[f]||(a[f]=!0,a.setTimeout(function(){d=b.getElementsByTagName("SCRIPT")[0],e=b.createElement("SCRIPT"),e.type="text/javascript",e.async=!0,e.src=c,d.parentNode.insertBefore(e,d)},10))}(window,document,"http://assets.pinterest.com/js/pinit_main.js");</script>
+					
+				</div>
+				<ul data-role="listview" id="bib-menu">
+					<li>
+						<a href="#" onclick="navigator.app.loadUrl('mailto:bibinsa@insa-toulouse.fr',{ openExternal:true })" data-ajax="false" >
+							<span class="custom_listview_thumbnail"><img src="img/icons/calendar.svg" ></span>
+							<h2>Reservation</h2>
+						</a>
+					</li>
+					<li>
+						<a href="#" onclick="navigator.app.loadUrl('http://catalogue.univ-toulouse.fr/ipac20/ipac.jsp?&profile=insa&menu=account',{ openExternal:true })" data-ajax="false" >
+							<span class="custom_listview_thumbnail"><img src="img/icons/user.svg"></span>
+							<h2>Mon compte</h2>
+						</a>
+					</li>
+					<li>
+						<!--<a href="#" onclick="navigator.app.loadUrl('fb://profile/384209365016197',{ openExternal:true })" data-ajax="false" >-->
+						<a href="#" onclick="navigator.app.loadUrl('https://www.facebook.com/bibinsatoulouse',{ openExternal:true })" data-ajax="false" >
+							<span class="custom_listview_thumbnail"><img src="img/icons/facebook.svg"></span>
+							<h2>Page Facebook</h2>
+						</a>
+					</li>
+					<li>
+						<a href="#" onclick="navigator.app.loadUrl('mailto:bibinsa@insa-toulouse.fr',{ openExternal:true })" data-ajax="false" >
+							<span class="custom_listview_thumbnail"><img src="img/icons/clock-o.svg"></span>
+							<h2>Horaires d'ouverture</h2>
+						</a>
+					</li>
+					<li>
+						<a href="#" onclick="navigator.app.loadUrl('mailto:bibinsa@insa-toulouse.fr',{ openExternal:true })" data-ajax="false" >
+							<span class="custom_listview_thumbnail"><img src="img/icons/envelope.svg"></span>
+							<h2>Contact</h2>
+						</a>
+					</li>
+				</ul>
+				
+				
+					
+				
+								
+				
+			</section>
+			<!-- /panel -->
+			<div data-role="panel" id="right-panel" data-position-fixed="true" data-position="right" data-display="overlay" data-theme="b" >
+				<div class="ui-panel-inner">
+					<ul data-role="listview" style="z-index=-100" >
+						<li data-role="list-divider">Aller à la rubrique..</li>
+						<li data-icon="home"><a href="index.html" data-transition="pop" data-direction="reverse">Accueil</a></li>
+						<li data-icon="bullets"><a href="pres.html" data-transition="flow">Présentation</a></li>
+						<li data-icon="rss"><a href="actu.html" data-ajax="false">Actu</a></li>
+						<li data-icon="calendar"><a href="edt.html" data-transition="flow">Emploi du Temps</a></li>
+						<li data-icon="cloud"><a href="meteo.html" data-transition="flow">Météo</a></li>
+						<li data-icon="cutlery"><a href="ru.html" data-transition="flow">Menu Self</a></li>
+						<li data-icon="twitter"><a href="tweets.html" data-transition="flow">Réseaux Sociaux</a></li>
+						<li data-icon="location"><a href="plan.html" data-transition="flow">Plan d'accès</a></li>
+						<li data-icon="book"><a href="bib.html" data-transition="flow">BIB in Sports</a></li>
+						<li data-icon="wifi"><a href="wifi.html" data-transition="flow">Configurer Wifi</a></li>
+						<li data-icon="phone"><a href="contact.html" data-transition="flow">Contact</a></li>
+					</ul>
+				</div>
+			</div>
+		<script>
+		//$('#bib_page').on('pagecreate',function(){
+			/*window.onresize = function(event) {
+				$('#pinterest_widget').html('<a data-pin-do="embedBoard" href="http://www.pinterest.com/bibinsatlse/nouveautés/" data-pin-scale-width="100" data-pin-scale-height="100" data-pin-board-width="720">Follow Bib\'INSA Toulouse\'s board Nouveautés on Pinterest.</a>');
+				
+				!function(a,b,c){
+					var d,e,f;
+					f="PIN_"+~~((new Date).getTime()/864e5),a[f]||(a[f]=!0,a.setTimeout(function(){
+						alert('test');
+						d=b.getElementsByTagName("SCRIPT")[0],e=b.createElement("SCRIPT"),e.type="text/javascript",e.async=!0,e.src=c,d.parentNode.insertBefore(e,d)
+					},10))
+				}(window,document,"js/pinit_main.js");
+			};*/
+			
+		//});
+		</script>
+
+		</div>
+		
+	</body>
+</html>

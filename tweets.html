@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>App Insa Alpha 1</title>		
+		<meta name="viewport" content="width=device-width, user-scalable=no" />
+		
+		<link rel="stylesheet" href="js/jquery.mobile-1.4.2.css" />
+		<link rel="stylesheet" href="css/custom.css" />
+		<!--<script src="js/index.js"></script>-->	
+		<script src="cordova.js"></script>
+		<script src="js/jquery-1.11.0.min.js"></script>
+		<script src="js/jquery.mobile-1.4.2.min.js"></script>
+	
+		<!--<script src="cordova_plugins.js"></script>-->
+		<script>
+			$.support.cors = true;
+			$.mobile.allowCrossDomainPages = true;
+			$.mobile.phonegapNavigationEnable = true;
+			
+			
+		</script>
+		
+	</head>
+	<body>
+		<div data-role="page" id="tweets_page" data-theme="b" data-dom-cache="true" >
+			
+			<header data-role="header" data-position="fixed" >
+				<a href="index.html" data-icon="gohome" data-role="button" data-iconpos="notext" class="big-btn ui-nodisc-icon big-icon" data-corners="false" data-transition="pop" data-direction="reverse">Retour</a>
+				<h1 style="color:#2aa9e0"><img style="height:1.2em; margin-bottom:-0.2em" src="img/icons/twitter_blue.svg" /> Twitter</h1>
+				<a href="#right-panel" data-icon="menudvp" data-iconpos="notext" class="big-btn ui-nodisc-icon big-icon" data-corners="false">Menu</a>
+			</header>
+			
+			<section data-role="content" style="text-align:center;padding:0;" >
+				<style type="text/css">
+					#tweets_page {
+						height: 80%;
+					}
+					
+					section {
+						
+						height:100%;
+					}
+					#twitter-widget-0{
+						
+						width:90%;
+						
+						min-height:98%;
+						
+						
+						
+					}
+				</style>
+				<a data-chrome="noscrollbar transparent" class="twitter-timeline" href="https://twitter.com/INSAToulouse" data-widget-id="431449495746785282"><br /><br /><img  src="js/images/ajax-loader.gif" /></a>
+				<script>
+				
+				$('#tweets_page').on('pagecreate', function() {
+					if (window.twttr) {
+						twttr.widgets.load();
+					} else {
+						!function(d,s,id){
+							var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
+							if(!d.getElementById(id)){
+								js=d.createElement(s);
+								js.id=id;js.src=p+"://platform.twitter.com/widgets.js";
+								fjs.parentNode.insertBefore(js,fjs);
+							}
+						}
+						(document,"script","twitter-wjs");
+						
+						
+					}
+					/*$( "#tweets_page" ).on( "swipeleft", function() {
+					
+						// We check if there is no open panel on the page because otherwise
+						// a swipe to close the left panel would also open the right panel (and v.v.).
+						// We do this by checking the data that the framework stores on the page element (panel: open).
+						if ( $.mobile.activePage.jqmData( "panel" ) !== "open" ) {
+							
+								$( "#right-panel" ).panel( "open" );
+							
+						}
+					});	*/
+						
+				});
+				
+				</script>
+			
+			</section>
+			
+			<footer data-role="footer" data-position="fixed" data-tap-toggle="false">
+				<div data-role="navbar" >
+					<ul>
+					
+						<li><a href="facebook.html" data-ajax="false" class="white-bottom-nav"><img style="height:48px" src="img/icons/facebook.svg"></a></li>
+						<li><a class="white-bottom-nav" href="#" onclick="navigator.app.loadUrl('http://www.youtube.com/user/InsaToulouse',{ openExternal:true })" ><img style="height:48px" src="img/icons/youtube.svg"></a></li>
+						<!--<li><a href="#" onclick="navigator.app.loadUrl('http://www.linkedin.com/groups/INSA-de-Toulouse-1853952?trk=myg_ugrp_ovr',{ openExternal:true })" class="ui-nodisc-icon no-radius big-icon" data-icon="linkedin"></a></li>
+						<li><a href="#" onclick="navigator.app.loadUrl('http://www.viadeo.com/groups/?containerId=0021q19whauziley',{ openExternal:true })" class="ui-nodisc-icon no-radius big-icon" data-icon="viadeo"></a></li>
+					-->
+					</ul>
+				</div><!-- /navbar -->
+			
+			</footer>
+			<!-- /panel -->
+			<div data-role="panel" id="right-panel" data-position-fixed="true" data-position="right" data-display="overlay" data-theme="b">
+				<div class="ui-panel-inner">	
+					<ul data-role="listview" style="z-index=-100" >
+						<li data-role="list-divider">Aller à la rubrique..</li>
+						<li data-icon="home"><a href="index.html" data-transition="pop" data-direction="reverse">Accueil</a></li>
+						<li data-icon="bullets"><a href="pres.html" data-transition="flow">Présentation</a></li>
+						<li data-icon="rss"><a href="actu.html" data-ajax="false">Actu</a></li>
+						<li data-icon="calendar"><a href="edt.html" data-transition="flow">Emploi du Temps</a></li>
+						<li data-icon="cloud"><a href="meteo.html" data-transition="flow">Météo</a></li>
+						<li data-icon="cutlery"><a href="ru.html" data-transition="flow">Menu Self</a></li>
+						<li data-icon="twitter"><a href="tweets.html" data-transition="flow">Réseaux Sociaux</a></li>
+						<li data-icon="location"><a href="plan.html" data-transition="flow">Plan d'accès</a></li>
+						<li data-icon="book"><a href="bib.html" data-transition="flow">BIB in Sports</a></li>
+						<li data-icon="wifi"><a href="wifi.html" data-transition="flow">Configurer Wifi</a></li>
+						<li data-icon="phone"><a href="contact.html" data-transition="flow">Contact</a></li>
+					</ul>
+				</div>
+			</div>
+		<script>
+			/*$(document).on('load','#twitter-widget-0', function(){
+			
+				var height = window.innerHeight;
+				$('#twitter-widget-0').css('height', height+'px');
+			
+			});
+			$(document).on('pagecreate', function() {
+				
+					
+				
+				$(window).resize(function(){
+					var height = window.innerHeight;
+					$('#twitter-widget-0').css('height', height-130+'px');
+				});
+			});*/
+		</script>
+
+		</div>
+		
+	</body>
+</html>
