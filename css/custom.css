@@ -1,10 +1,33 @@
-/*PINTEREST WIDGET*/
+/********************/
+/*     	GENERAL		*/
+/********************/
+
+h3{
+	margin-bottom: 0;
+}
+/*classes de visibilité*/
+.hidden{
+    visibility: hidden;
+}
+.shown{
+    visibility: visible;
+}
+.display_none{
+	display:none;
+}
+
+/**********************/
+/*  PINTEREST WIDGET  */
+/**********************/
 #pinterest_widget>span{
 	max-width: 100%;
 	overflow:hidden;
 }
 
-/*main menu*/
+
+/*****************/
+/*   MAIN MENU   */
+/*****************/
 div.home_icon{
 	padding: 8% 0;
 }
@@ -17,17 +40,33 @@ div.home_icon{
 	display:block;
 	margin:auto;
 	border-radius:50%;
-	width: 64px;
-	height:64px;
+	width: 62px;
+	height:62px;
 	margin-bottom:6px;
 	
-}
-.main_menu_link:active{
-	background-color: #22aadd;
-	box-shadow: 0 0 15px 4px #22aadd;
+	
 }
 
-/*Header*/
+.main_menu_link>img{
+	margin-top: -1px;
+	margin-left: -1px;
+}
+
+.main_menu_link:hover{
+	
+	box-shadow: 0 0 15px 0 #fff;
+	
+}
+
+.main_menu_link:active{
+	
+	box-shadow: 0 0 15px 4px #fff;
+	opacity: 0.8;
+}
+
+/*****************/
+/*    HEADER     */
+/*****************/
 .ui-page .ui-header{
 	height:50px;
 	background-color:white;
@@ -46,20 +85,9 @@ div.home_icon{
     margin-left: 10%;
 }
 
-/* Reveal menu shadow on top of the list items */
-.ui-panel-display-reveal {
-	-webkit-box-shadow: none;
-	-moz-box-shadow: none;
-	box-shadow: none;
-}
-.ui-panel-page-content-position-right{
-	-webkit-box-shadow: 5px 0px 5px rgba(0,0,0,.15);
-	-moz-box-shadow: 5px 0px 5px rgba(0,0,0,.15);
-	box-shadow: 5px 0px 5px rgba(0,0,0,.15);
-}
-
+/************************/
 /* CUSTON HEADER BUTTON */
-
+/************************/
 .ui-btn-icon-notext.ui-btn-right.big-btn, .ui-btn-icon-notext.ui-btn-left.big-btn { 
 	height: 100%;
 	width: 52px;
@@ -127,6 +155,10 @@ div.home_icon{
 	left: 0;
 }
 
+/***********************/
+/*      SIDE PANEL     */
+/***********************/
+
 /*Scroll dans les panels*/
 .ui-panel.ui-panel-open {
     position:fixed;
@@ -141,8 +173,20 @@ div.home_icon{
     -webkit-overflow-scrolling: touch;
 }
 
+/********************/
+/*    LISTVIEWS     */
+/********************/
 
-/*LISTVIEWS*/
+.ui-listview > .ui-li-static.listview_title{
+	
+	text-align: right;
+	font-style: italic;
+	padding-top: 16px;
+	padding-bottom: 13px;
+	
+
+}
+
 
 .custom_listview_thumbnail{
 	float:left;
@@ -155,10 +199,62 @@ div.home_icon{
 .custom_listview_thumbnail img{
 	height: 64px;
 }
-/*NAVBAR*/
-.ui-page-theme-b .ui-btn.white-bottom-nav{
-	/*background: #ddd;*/
+
+
+
+.ui-listview li.ui-li-has-thumb> .ui-btn > .thumb_container{
+	position: absolute;
+	left: 0;
+	top: 0;
+	height:5em;
+	width:5em;
+	text-align: center;
+	overflow: hidden;
 }
+.ui-listview li.ui-li-has-thumb> .ui-btn > .thumb_container > img{
+	min-height:5em;
+	min-width:5em;
+	position: relative; /* allows repositioning */
+    left: 100%; /* move the whole width of the image to the right */
+    margin-left: -200%; /* magic! */
+}
+
+/****************/
+/*    NAVBAR    */
+/****************/
+.ui-page-theme-b .ui-btn.white-bottom-nav{
+	padding:6px 0 2px 0;
+	background-color: white;
+	border-color: #bbb;
+}
+
+.ui-page-theme-b .ui-btn.white-bottom-nav:hover{
+	
+	background-color: #eee;
+	
+}.ui-page-theme-b .ui-btn.white-bottom-nav:active{
+	
+	background-color: #2ad;
+	
+}
+
+
+
+/***************/
+/*    ICONS    */
+/***************/
+.ui-btn-icon-left:after, .ui-btn-icon-right:after, .ui-btn-icon-top:after, .ui-btn-icon-bottom:after, .ui-btn-icon-notext:after{
+	background-color: transparent;
+	-webkit-border-radius: 0;
+	border-radius: 0;
+}
+
+/*************************/
+/*      POP UP MENU      */
+/*************************/
+
+
+
 
 /*****************************/
 /*      TABLEAU CUSTOM      */
@@ -208,6 +304,11 @@ div.home_icon{
 /*  Use a max-width media query so we don't have to undo these styles */
 @media (max-width: 40em) {
     /*  Negate the margin between sections */
+	
+	.movie-list{
+		table-layout: fixed;
+	}
+	
     .movie-list tbody th {
         margin-top: 0;
         text-align: left;
@@ -253,6 +354,10 @@ div.home_icon{
 }
 /* Media query to show as a standard table at wider widths */
 @media ( min-width: 40em ) {
+
+	.movie-list{
+		table-layout: initial;
+	}
     /* Show the table header rows */
     .movie-list td,
     .movie-list th,
@@ -299,14 +404,36 @@ div.home_icon{
 /*****************/
 /* CUSTOM ICONS */
 /***************/
-.ui-icon-twitter:after {
-	background-image: url("../img/icons/twitter.svg");
+.ui-icon-edt:after {
+	background-image: url("../img/icons/emploidutemps-min.svg");
 	 /* Make your icon fit */
     background-size: 18px 18px;
 }
 /* Fallback */
-.ui-nosvg .ui-icon-twitter:after {
-	background-image: url("../img/icons/twitter.png");
+.ui-nosvg .ui-icon-edt:after {
+	background-image: url("../img/icons/emploidutemps-min.png");
+	 /* Make your icon fit */
+    background-size: 18px 18px;
+}
+.ui-icon-ecole:after {
+	background-image: url("../img/icons/presentation-min.svg");
+	 /* Make your icon fit */
+    background-size: 18px 18px;
+}
+/* Fallback */
+.ui-nosvg .ui-icon-ecole:after {
+	background-image: url("../img/icons/presentation-min.png");
+	 /* Make your icon fit */
+    background-size: 18px 18px;
+}
+.ui-icon-reseau:after {
+	background-image: url("../img/icons/reseau-min.svg");
+	 /* Make your icon fit */
+    background-size: 18px 18px;
+}
+/* Fallback */
+.ui-nosvg .ui-icon-reseau:after {
+	background-image: url("../img/icons/reseau-min.png");
 	 /* Make your icon fit */
     background-size: 18px 18px;
 }
@@ -317,18 +444,40 @@ div.home_icon{
 }
 /* Fallback */
 .ui-nosvg .ui-icon-book:after {
+	background-image: url("../img/icons/bibi-min.png");
+	 /* Make your icon fit */
+    background-size: 18px 18px;
+}
+.ui-icon-book:after {
+	background-image: url("../img/icons/bibi-min.svg");
+	 /* Make your icon fit */
+    background-size: 18px 18px;
+}
+/* Fallback */
+.ui-nosvg .ui-icon-book:after {
 	background-image: url("../img/icons/book.png");
 	 /* Make your icon fit */
     background-size: 18px 18px;
 }
+.ui-icon-sun:after {
+	background-image: url("../img/icons/meteo-min.svg");
+	 /* Make your icon fit */
+    background-size: 18px 18px;
+}
+/* Fallback */
+.ui-nosvg .ui-icon-sun:after {
+	background-image: url("../img/icons/meteo-min.png");
+	 /* Make your icon fit */
+    background-size: 18px 18px;
+}
 .ui-icon-wifi:after {
-	background-image: url("../img/icons/wifi.svg");
+	background-image: url("../img/icons/wif_smalli.svg");
 	 /* Make your icon fit */
     background-size: 18px 18px;
 }
 /* Fallback */
 .ui-nosvg .ui-icon-wifi:after {
-	background-image: url("../img/icons/wifi.png");
+	background-image: url("../img/icons/wif_smalli.png");
 	 /* Make your icon fit */
     background-size: 18px 18px;
 }
@@ -354,6 +503,28 @@ div.home_icon{
 	 /* Make your icon fit */
     background-size: 18px 18px;
 }
+.ui-icon-plan:after {
+	background-image: url("../img/icons/plan-min.svg");
+	 /* Make your icon fit */
+    background-size: 18px 18px;
+}
+/* Fallback */
+.ui-nosvg .ui-icon-plan:after {
+	background-image: url("../img/icons/plan-min.png");
+	 /* Make your icon fit */
+    background-size: 18px 18px;
+}
+.ui-icon-home2:after {
+	background-image: url("../img/icons/home2.svg");
+	 /* Make your icon fit */
+    background-size: 18px 18px;
+}
+/* Fallback */
+.ui-nosvg .ui-icon-home2:after {
+	background-image: url("../img/icons/home2.png");
+	 /* Make your icon fit */
+    background-size: 18px 18px;
+}
 .ui-icon-ellipsis-v:after {
 	background-image: url("../img/icons/menu.svg");
 	 /* Make your icon fit */
@@ -362,17 +533,6 @@ div.home_icon{
 /* Fallback */
 .ui-nosvg .ui-icon-ellipsis-v:after {
 	background-image: url("../img/icons/menu.png");
-	 /* Make your icon fit */
-    background-size: 36px;
-}
-.ui-icon-viadeo:after {
-	background-image: url("../img/icons/viadeo.svg");
-	 /* Make your icon fit */
-    background-size: 36px;
-}
-/* Fallback */
-.ui-nosvg .ui-icon-viadeo:after {
-	background-image: url("../img/icons/viadeo.png");
 	 /* Make your icon fit */
     background-size: 36px;
 }
@@ -397,17 +557,6 @@ div.home_icon{
 	background-image: url("../img/icons/youtube.png");
 	 /* Make your icon fit */
 	
-    background-size: 36px;
-}
-.ui-icon-linkedin:after {
-	background-image: url("../img/icons/linkedin.svg");
-	 /* Make your icon fit */
-    background-size: 36px;
-}
-/* Fallback */
-.ui-nosvg .ui-icon-linkedin:after {
-	background-image: url("../img/icons/linkedin.png");
-	 /* Make your icon fit */
     background-size: 36px;
 }
 .ui-icon-gohome:after {

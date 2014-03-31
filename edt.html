@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>App Insa Alpha 1</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />		
+		<meta name="viewport" content="width=device-width, user-scalable=no" />
+		
+		<link rel="stylesheet" href="js/jquery.mobile-1.4.2.css" />
+		<link rel="stylesheet" href="css/custom.css" />
+		<!--<script src="js/index.js"></script>-->
+		<script src="cordova.js"></script>
+		<script src="js/jquery-2.1.0.min.js"></script>
+		<script src="js/jquery.mobile-1.4.2.min.js"></script>
+		<script src="js/jquery.ui.map.full.min.js"></script>
+		<!--<script src="cordova_plugins.js"></script>-->
+		<script>
+			$.support.cors = true;
+			$.mobile.allowCrossDomainPages = true;
+			$.mobile.phonegapNavigationEnable = true;
+			
+			
+			
+		</script>
+	</head>
+	<body>
+		<div data-role="page" id="edt_page" data-theme="b" >
+			
+			<header data-role="header" data-position="fixed">
+				<a href="index.html" id="home_button" data-icon="gohome" data-role="button" data-iconpos="notext" class="big-btn ui-nodisc-icon big-icon" data-corners="false" data-transition="pop" data-direction="reverse">Retour</a>
+				<h1>Emploi du temps</h1>
+				<a id="panel_button" data-icon="menudvp" data-iconpos="notext" class="big-btn ui-nodisc-icon big-icon" data-corners="false">Menu</a>
+			</header>
+			
+			<section data-role="content" style="padding-top:4px">
+				
+				
+				<!--<div class="ui-grid-a">
+               
+					<div class="ui-block-a">
+						<select id="entite" class="ui-mini" >
+							<option value="" >Choisissez ici votre entité</option>
+						</select>
+					</div>
+					<div class="ui-block-b">
+						<span id="groupe_visibility" class="hidden">
+						<select id="groupe"  class="ui-mini" >
+						</select>
+						</span>
+					</div>
+           
+				</div>-->
+				
+				<select id="entite" class="ui-mini" >
+					<option value="" >Choisissez ici votre entité</option>
+
+				</select>
+				<span id="groupe_visibility" class="hidden">
+					<select id="groupe"  class="ui-mini" >
+					</select>
+				</span>
+					
+				
+				<span id="error_message" style="text-align:center"></span>
+				
+				
+        <div id="nav_date" class="ui-grid-b display_none">
+               
+          <div class="ui-block-a"><a href="#" data-icon="arrow-l" id="prevDay" class="ui-mini ui-btn ui-corner-all ui-btn-icon-left ui-icon-arrow-l">Précédent</a></div>
+          <div class="ui-block-b"><a href="#" data-icon="star" id="curDay" class="ui-mini ui-btn ui-corner-all">Aujourd'hui</a></div>
+          <div class="ui-block-b"><a href="#" data-icon="arrow-r" id="nextDay" class="ui-mini ui-btn ui-corner-all ui-btn-icon-right ui-icon-arrow-r">Suivant</a></div>
+           
+        </div>
+				<div id="edt" style="">
+					<table data-role="table" id="movie-table" data-mode="reflow" class="movie-list" >
+					</table>
+				</div>
+			<p style="text-align:center;" id="loader"><img src="js/images/ajax-loader.gif" /></p>
+			</section>
+			
+			<div data-role="panel" id="right-panel" data-position-fixed="true" data-position="right" data-display="overlay" data-theme="b">
+				<div class="ui-panel-inner">	
+					<ul data-role="listview" style="z-index=-100" >
+						<li class="listview_title">Aller à la rubrique..</li>
+						<li data-icon="home2"><a href="index.html" class="ajaxed">Accueil</a></li>
+						<li data-icon="ecole"><a href="pres.html" class="ajaxed">Votre école</a></li>
+						<li data-icon="rss"><a href="actu.html" class="nonajaxed">Actualités</a></li>
+						<li data-icon="edt"><a href="edt.html" class="ajaxed">Emploi du Temps</a></li>
+						<li data-icon="sun"><a href="meteo.html" class="ajaxed">Météo</a></li>
+						<li data-icon="cutlery"><a href="ru.html" class="ajaxed">Menu Self</a></li>
+						<li data-icon="reseau"><a href="tweets.html" class="ajaxed">Réseaux Sociaux</a></li>
+						<li data-icon="plan"><a href="plan.html" class="ajaxed">Plan d'accès</a></li>
+						<li data-icon="book"><a href="bib.html" class="ajaxed">Bib'INSA</a></li>
+						<li data-icon="wifi"><a href="wifi.html" class="ajaxed">WiFi</a></li>
+						<li data-icon="phone"><a href="contact.html" class="ajaxed">Contact</a></li>
+						<li data-icon="info"><a href="about.html" class="ajaxed">A propos</a></li>
+					</ul>
+				</div>
+			</div><!-- /panel -->
+			
+			<script>
+			//Date globales
+            var now = new Date();
+			
+            var ceJour = new Date(now);
+			
+			 
+              
+// Formatage date en dd-mm-yyyy
+function formattedDate(date) {
+      var d = new Date(date || Date.now()),
+      month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate(),
+      year = d.getFullYear();
+
+      if (month.length < 2) month = '0' + month;
+      if (day.length < 2) day = '0' + day;
+
+     return [day, month, year].join('-');
+}
+
+//Formatage date en "Français" ( Lundi 22 Juillet 2048 )
+function formattedDateEnMieux(date) {
+
+	var m_names = new Array("Janvier", "Février", "Mars", 
+"Avril", "Mai", "Juin", "Juillet", "Aout", "Septembre", 
+"Octobre", "Novembre", "Decembre");
+	var d_names = new Array("Dimanche", "Lundi", "Mardi", "Mercredi", 
+"Jeudi", "Vendredi", "Samedi" );
+	var d = new Date(date || Date.now()),
+	month = m_names[d.getMonth()],
+	day = d.getDate(),
+	dow = d_names[d.getDay()],
+	year = d.getFullYear();
+	return [dow, day, month, year].join(' ');
+}
+
+//chargement et affichage du tableau d'emploi du temps
+function displayAde(groupe,next){
+
+	var next_param=formattedDate(next);
+	
+	//recharge le gif de chargement
+	$("#edt_page #loader").removeClass('display_none');
+	//vide le tableau d'emploi du temps
+	$('#movie-table').html('');
+	//charge le nouveau tableau d'emploi du temps distant
+	$('#movie-table').load('http://geda-test2.insa-toulouse.fr/m/wsAde.php?&id='+groupe+'&to='+next_param+'&projectId=1', function( response, status, xhr ) {
+		if(!$(response).find('.title').length){
+			$('#movie-table').html('<tr><td style="text-align:center">Pas de cours trouvé ce jour</td></tr>');
+		}
+		else{
+			$("#movie-table").table( "refresh" );
+		}
+		
+		$("#edt_page #loader").addClass('display_none');
+		
+		//desactive le bouton "Aujourd'hui" si la date courante est aujourd'hui
+		if(now.getTime() == ceJour.getTime()){
+			$('#curDay').addClass('ui-disabled');
+		}
+		else{
+			$('#curDay').removeClass('ui-disabled');
+		}
+		
+		//Si erreur ajax
+		if ( status == "error" ) {
+			$('#edt_page #error_message').html('Erreur de chargement');
+		}
+		//sinon, on affiche la date en "français"
+		else{
+			$('#edt_page #error_message').html('<h3>'+formattedDateEnMieux(next)+'</h3>');
+		}
+	});
+
+}
+
+
+				$('#edt_page').on('pagecreate', function() {
+				
+					//NAVIGATION
+					// Remplacement des click des liens par des vclick (pour eviter les latences de 300ms sur android <= 4.3) 
+					// vclick étant une abstraction de "tap" et "click" en fonction du media receveur (mobile: tap, navigateur bureau: click)
+					var currentpage = $(this);
+					$('#home_button, #panel_button', currentpage).on('click',function(e){
+						e.preventDefault();
+					});
+					$('#home_button',currentpage).off('vclick').on('vclick',function(e){
+						$.mobile.pageContainer.pagecontainer( "change", $(this).attr('href'),{reverse:true});
+					});
+					
+					$('#panel_button',this).off('vclick').on('vclick',function(e){
+						$('#right-panel',currentpage).panel( "open" );
+					});
+					$('#right-panel .ui-listview > li > a.ui-btn',currentpage).on('click',function(e){
+						e.preventDefault();
+					});
+					
+					$('#right-panel .ui-listview > li > a.ui-btn.ajaxed',currentpage).off('vclick').on('vclick',function(e){									
+						$.mobile.pageContainer.pagecontainer( "change", $(this).attr('href'), { transition: "flow"});
+					});
+					$('#right-panel .ui-listview > li > a.ui-btn.nonajaxed',currentpage).off('vclick').on('vclick',function(e){									
+						window.location.href = $(this).attr('href');
+					});
+					
+					
+					//EMPLOI DU TEMPS
+					var json_list = null;
+					
+					//récupere la liste des groupes
+					$.getJSON('http://geda-test2.insa-toulouse.fr/m/wsAdeGrp.php?projectId=1').done(function(data,status){
+					
+						json_list = data;
+						//remplissage du select par les groupes
+						for (var key in json_list) {
+							$('#entite').append('<option value="'+key+'">'+data[key].name+'</option>');
+						}
+						
+						//charge l'entité sauvegardé en localStorage s'il existe
+						if(window.localStorage.getItem("entite")){
+							
+							var entite = window.localStorage.getItem("entite");
+							//selectionne l'entité sauvegardé
+							$('#entite option[value="'+entite+'"]').prop('selected',true);
+							$('#entite').trigger('change');
+							
+							//charge le groupe sauvegardé en localStorage s'il existe
+							if(window.localStorage.getItem("groupe")){
+								
+								var groupe = window.localStorage.getItem("groupe");
+								//selectionne le groupe sauvegardé
+								$('#groupe option[value="'+groupe+'"]').prop('selected',true);
+								$('#groupe').trigger('change');
+								
+							}
+						}
+						
+						
+					}).fail(function(data,status){
+						$('#edt_page #error_message').html('Erreur de chargement de la liste des groupes');
+					}).always(function(){
+						$("#edt_page #loader").addClass('display_none');
+					});
+					
+					//selection de l'entite
+					$('#entite').change(function(){
+					
+						var selected_entite = $(this).val();
+						
+						//Sauvegarde l'entité selectionnée
+						window.localStorage.setItem("entite", selected_entite);
+						
+						//Si les entités sont déjà chargées
+						if(json_list){
+							//vide la liste des groupes
+							$('#groupe').empty();
+							$('#groupe').append('<option value="" disabled selected>Choisissez ici votre groupe</option>');
+						
+							//et la reremplie avec les groupes de la nouvelle entité selectionnée
+							for (var key in json_list[selected_entite].content) {
+								$('#groupe').append('<option value="'+json_list[selected_entite].content[key].id+'">'+json_list[selected_entite].content[key].name+'</option>');
+							}
+							
+							$('#groupe').selectmenu('refresh', true);
+							
+							//dans le cas du 1er chargement de la page quand le groupe est sauvegardé, on ne le supprime pas du localstorage.
+							//dans les autre cas (changement a posteriori) on le supprime
+							if(!$('#groupe option[value="'+window.localStorage.getItem("groupe")+'"]').length){
+								window.localStorage.removeItem("groupe");
+							}
+							$('#nav_date').addClass('display_none');
+							$('#groupe_visibility').addClass('shown');
+							$('#movie-table').html('');
+							
+							
+						}
+					
+					});
+					
+					
+					
+					//selection du groupe
+					$('#groupe').change(function(){
+						//Si un groupe est bien selectionné
+						if($(this).val()){
+							//vire le gif de chargement et vide le tableau d'emploi du temps
+							$("#edt_page #loader").removeClass('display_none');	
+							groupe = $(this).val();
+							$('#movie-table').html('');
+							
+							//Sauvegarde le groupe en localStorage
+							window.localStorage.setItem("groupe", groupe);
+														
+							var groupe = $('#groupe').val();
+							//re-affiche la date
+							$('#nav_date').removeClass('display_none');
+							//charge le nouveau table d'emploi du temps
+							displayAde(groupe,ceJour);
+														
+						}
+						else{
+							
+						}
+					
+					});
+					
+					//jour suivant
+					$('#nextDay').on('vclick',function(){
+						
+						var jourSuivant = new Date(ceJour);
+						jourSuivant.setDate(ceJour.getDate()+1);
+						ceJour=jourSuivant;
+
+						var groupe = $('#groupe').val();
+						displayAde(groupe,jourSuivant);
+					});
+					
+					//jour precedent
+					$('#prevDay').on('vclick',function(){
+						
+						var jourSuivant = new Date(ceJour);
+						jourSuivant.setDate(ceJour.getDate()-1);
+						ceJour=jourSuivant;
+					
+						var groupe = $('#groupe').val();
+						displayAde(groupe,jourSuivant);
+					});
+
+
+					//aujourd'hui
+					$('#curDay').on('vclick',function(){
+						
+						ceJour=now;
+						
+						var groupe = $('#groupe').val();
+						displayAde(groupe,now);
+					});
+
+				});
+			</script>
+
+		</div>
+		
+	</body>
+</html>

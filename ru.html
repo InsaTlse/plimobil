@@ -2,16 +2,18 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>App Insa Alpha 1</title>		
+		<title>App Insa Alpha 1</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />		
 		<meta name="viewport" content="width=device-width, user-scalable=no" />
 		
 		<link rel="stylesheet" href="js/jquery.mobile-1.4.2.css" />
 		<link rel="stylesheet" href="css/custom.css" />
 		<!--<script src="js/index.js"></script>-->	
 		<script src="cordova.js"></script>
-		<script src="js/jquery-1.11.0.min.js"></script>
+		<script src="js/jquery-2.1.0.min.js"></script>
 		<script src="js/jquery.mobile-1.4.2.min.js"></script>
-	
+		<script src="js/jquery.ui.map.full.min.js"></script>
+		
 		<!--<script src="cordova_plugins.js"></script>-->
 		<script>
 			$.support.cors = true;
@@ -26,9 +28,9 @@
 		<div data-role="page" id="ru_page"  data-theme="b">
 			
 			<header data-role="header" data-position="fixed">
-				<a href="index.html" data-icon="gohome" data-role="button" data-iconpos="notext" class="big-btn ui-nodisc-icon big-icon" data-corners="false" data-transition="pop" data-direction="reverse">Retour</a>
+				<a href="index.html" id="home_button" data-icon="gohome" data-role="button" data-iconpos="notext" class="big-btn ui-nodisc-icon big-icon" data-corners="false" data-transition="pop" data-direction="reverse">Retour</a>
 				<h1>Menu Self</h1>
-				<a href="#right-panel" data-icon="menudvp" data-iconpos="notext" class="big-btn ui-nodisc-icon big-icon" data-corners="false">Menu</a>
+				<a id="panel_button" data-icon="menudvp" data-iconpos="notext" class="big-btn ui-nodisc-icon big-icon" data-corners="false">Menu</a>
 			</header>
 			
 			<section data-role="content">
@@ -41,34 +43,46 @@
 			<div data-role="panel" id="right-panel" data-position-fixed="true" data-position="right" data-display="overlay" data-theme="b">
 				<div class="ui-panel-inner">
 					<ul data-role="listview" style="z-index=-100" >
-						<li data-role="list-divider">Aller à la rubrique..</li>
-						<li data-icon="home"><a href="index.html" data-transition="pop" data-direction="reverse">Accueil</a></li>
-						<li data-icon="bullets"><a href="pres.html" data-transition="flow">Présentation</a></li>
-						<li data-icon="rss"><a href="actu.html" data-ajax="false">Actu</a></li>
-						<li data-icon="calendar"><a href="edt.html" data-transition="flow">Emploi du Temps</a></li>
-						<li data-icon="cloud"><a href="meteo.html" data-transition="flow">Météo</a></li>
-						<li data-icon="cutlery"><a href="ru.html" data-transition="flow">Menu Self</a></li>
-						<li data-icon="twitter"><a href="tweets.html" data-transition="flow">Réseaux Sociaux</a></li>
-						<li data-icon="location"><a href="plan.html" data-transition="flow">Plan d'accès</a></li>
-						<li data-icon="book"><a href="bib.html" data-transition="flow">BIB in Sports</a></li>
-						<li data-icon="wifi"><a href="wifi.html" data-transition="flow">Configurer Wifi</a></li>
-						<li data-icon="phone"><a href="contact.html" data-transition="flow">Contact</a></li>
+						<li class="listview_title">Aller à la rubrique..</li>
+						<li data-icon="home2"><a href="index.html" class="ajaxed">Accueil</a></li>
+						<li data-icon="ecole"><a href="pres.html" class="ajaxed">Votre école</a></li>
+						<li data-icon="rss"><a href="actu.html" class="nonajaxed">Actualités</a></li>
+						<li data-icon="edt"><a href="edt.html" class="ajaxed">Emploi du Temps</a></li>
+						<li data-icon="sun"><a href="meteo.html" class="ajaxed">Météo</a></li>
+						<li data-icon="cutlery"><a href="ru.html" class="ajaxed">Menu Self</a></li>
+						<li data-icon="reseau"><a href="tweets.html" class="ajaxed">Réseaux Sociaux</a></li>
+						<li data-icon="plan"><a href="plan.html" class="ajaxed">Plan d'accès</a></li>
+						<li data-icon="book"><a href="bib.html" class="ajaxed">Bib'INSA</a></li>
+						<li data-icon="wifi"><a href="wifi.html" class="ajaxed">WiFi</a></li>
+						<li data-icon="phone"><a href="contact.html" class="ajaxed">Contact</a></li>
+						<li data-icon="info"><a href="about.html" class="ajaxed">A propos</a></li>
 					</ul>
 				</div>
 			</div>
 		<script>
 		$('#ru_page').on('pagecreate',function(){
-			/*$( "#ru_page" ).on( "swipeleft", function() {
-					
-						// We check if there is no open panel on the page because otherwise
-						// a swipe to close the left panel would also open the right panel (and v.v.).
-						// We do this by checking the data that the framework stores on the page element (panel: open).
-						if ( $.mobile.activePage.jqmData( "panel" ) !== "open" ) {
-							
-								$( "#right-panel" ).panel( "open" );
-							
-						}
-			});*/
+			//NAVIGATION
+			var currentpage = $(this);
+			$('#home_button, #panel_button', currentpage).on('click',function(e){
+				e.preventDefault();
+			});
+			$('#home_button',currentpage).off('vclick').on('vclick',function(e){
+				$.mobile.pageContainer.pagecontainer( "change", $(this).attr('href'),{reverse:true});
+			});
+			
+			$('#panel_button',this).off('vclick').on('vclick',function(e){
+				$('#right-panel',currentpage).panel( "open" );
+			});
+			$('#right-panel .ui-listview > li > a.ui-btn',currentpage).on('click',function(e){
+					e.preventDefault();
+			});
+			
+			$('#right-panel .ui-listview > li > a.ui-btn.ajaxed',currentpage).off('vclick').on('vclick',function(e){									
+				$.mobile.pageContainer.pagecontainer( "change", $(this).attr('href'), { transition: "flow"});
+			});
+			$('#right-panel .ui-listview > li > a.ui-btn.nonajaxed',currentpage).off('vclick').on('vclick',function(e){									
+				window.location.href = $(this).attr('href');
+			});
 		});
 		</script>
 

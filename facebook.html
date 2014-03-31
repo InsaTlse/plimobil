@@ -2,16 +2,18 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>App Insa Alpha 1</title>		
+		<title>App Insa Alpha 1</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />		
 		<meta name="viewport" content="width=device-width, user-scalable=no" />
 		
 		<link rel="stylesheet" href="js/jquery.mobile-1.4.2.css" />
 		<link rel="stylesheet" href="css/custom.css" />
 		<!--<script src="js/index.js"></script>-->	
 		<script src="cordova.js"></script>
-		<script src="js/jquery-1.11.0.min.js"></script>
+		<script src="js/jquery-2.1.0.min.js"></script>
 		<script src="js/jquery.mobile-1.4.2.min.js"></script>
-	
+		<script src="js/jquery.ui.map.full.min.js"></script>
+		
 		<!--<script src="cordova_plugins.js"></script>-->
 		<script>
 			$.support.cors = true;
@@ -26,9 +28,9 @@
 		<div data-role="page" id="facebook_page" data-theme="b" data-dom-cache="true">
 			
 			<header data-role="header" data-position="fixed" >
-				<a href="index.html" data-icon="gohome" data-role="button" data-iconpos="notext" class="big-btn ui-nodisc-icon big-icon" data-corners="false" data-transition="pop" data-direction="reverse">Retour</a>
+				<a href="index.html" id="home_button" data-icon="gohome" data-role="button" data-iconpos="notext" class="big-btn ui-nodisc-icon big-icon" data-corners="false" data-transition="pop" data-direction="reverse">Retour</a>
 				<h1 style="color:#3B5998"><img style="height:1.2em; margin-bottom:-0.2em" src="img/icons/facebook.svg" /> Facebook</h1>
-				<a href="#right-panel" data-icon="menudvp" data-iconpos="notext" class="big-btn ui-nodisc-icon big-icon" data-corners="false">Menu</a>
+				<a id="panel_button" data-icon="menudvp" data-iconpos="notext" class="big-btn ui-nodisc-icon big-icon" data-corners="false">Menu</a>
 			</header>
 			
 			<section data-role="content" >
@@ -43,8 +45,8 @@
 				<div data-role="navbar">
 					<ul>
 					
-						<li><a href="tweets.html" class="ui-nodisc-icon no-radius big-icon" data-ajax="false"><img  style="height:48px" src="img/icons/twitter_blue.svg"></a></li>
-						<li><a href="#" onclick="navigator.app.loadUrl('http://www.youtube.com/user/InsaToulouse',{ openExternal:true })" class="ui-nodisc-icon no-radius big-icon"  ><img  style="height:48px" src="img/icons/youtube_logo.svg"></a></li>
+						<li><a class="white-bottom-nav" id="tt_btn" href="tweets.html" class="ui-nodisc-icon no-radius big-icon" ><img  style="height:44px" src="img/icons/twitter_blue.svg"></a></li>
+						<li ><a class="white-bottom-nav" href="#" onclick="navigator.app.loadUrl('http://www.youtube.com/user/InsaToulouse',{ openExternal:true })" ><img style="height:44px" src="img/icons/youtube.svg"></a></li>
 						<!--<li><a href="#" onclick="navigator.app.loadUrl('http://www.linkedin.com/groups/INSA-de-Toulouse-1853952?trk=myg_ugrp_ovr',{ openExternal:true })" class="ui-nodisc-icon no-radius big-icon" data-icon="linkedin"></a></li>
 						<li><a href="#" onclick="navigator.app.loadUrl('http://www.viadeo.com/groups/?containerId=0021q19whauziley',{ openExternal:true })" class="ui-nodisc-icon no-radius big-icon" data-icon="viadeo"></a></li>
 					-->
@@ -56,68 +58,98 @@
 			<div data-role="panel" id="right-panel" data-position-fixed="true" data-position="right" data-display="overlay" data-theme="b">
 				<div class="ui-panel-inner">	
 					<ul data-role="listview" style="z-index=-100" >
-						<li data-role="list-divider">Aller à la rubrique..</li>
-						<li data-icon="home"><a href="index.html" data-transition="pop" data-direction="reverse">Accueil</a></li>
-						<li data-icon="bullets"><a href="pres.html" data-transition="flow">Présentation</a></li>
-						<li data-icon="rss"><a href="actu.html" data-ajax="false">Actu</a></li>
-						<li data-icon="calendar"><a href="edt.html" data-transition="flow">Emploi du Temps</a></li>
-						<li data-icon="cloud"><a href="meteo.html" data-transition="flow">Météo</a></li>
-						<li data-icon="cutlery"><a href="ru.html" data-transition="flow">Menu Self</a></li>
-						<li data-icon="twitter"><a href="tweets.html" data-transition="flow">Réseaux Sociaux</a></li>
-						<li data-icon="location"><a href="plan.html" data-transition="flow">Plan d'accès</a></li>
-						<li data-icon="book"><a href="bib.html" data-transition="flow">BIB in Sports</a></li>
-						<li data-icon="wifi"><a href="wifi.html" data-transition="flow">Configurer Wifi</a></li>
-						<li data-icon="phone"><a href="contact.html" data-transition="flow">Contact</a></li>
+						<li class="listview_title">Aller à la rubrique..</li>
+						<li data-icon="home2"><a href="index.html" class="ajaxed">Accueil</a></li>
+						<li data-icon="ecole"><a href="pres.html" class="ajaxed">Votre école</a></li>
+						<li data-icon="rss"><a href="actu.html" class="nonajaxed">Actualités</a></li>
+						<li data-icon="edt"><a href="edt.html" class="ajaxed">Emploi du Temps</a></li>
+						<li data-icon="sun"><a href="meteo.html" class="ajaxed">Météo</a></li>
+						<li data-icon="cutlery"><a href="ru.html" class="ajaxed">Menu Self</a></li>
+						<li data-icon="reseau"><a href="tweets.html" class="ajaxed">Réseaux Sociaux</a></li>
+						<li data-icon="plan"><a href="plan.html" class="ajaxed">Plan d'accès</a></li>
+						<li data-icon="book"><a href="bib.html" class="ajaxed">Bib'INSA</a></li>
+						<li data-icon="wifi"><a href="wifi.html" class="ajaxed">WiFi</a></li>
+						<li data-icon="phone"><a href="contact.html" class="ajaxed">Contact</a></li>
+						<li data-icon="info"><a href="about.html" class="ajaxed">A propos</a></li>
 					</ul>
 				</div>
 			</div>
 		<script>
 			
 			$(document).one('pagecreate', '#facebook_page', function() {
+				//NAVIGATION
+				var currentpage = $(this);
+				$('#home_button, #panel_button', currentpage).on('click',function(e){
+					e.preventDefault();
+				});
+				$('#home_button',currentpage).off('vclick').on('vclick',function(e){
+					$.mobile.pageContainer.pagecontainer( "change", $(this).attr('href'),{reverse:true});
+				});
 				
+				$('#panel_button',this).off('vclick').on('vclick',function(e){
+					$('#right-panel',currentpage).panel( "open" );
+				});
+				$('#right-panel .ui-listview > li > a.ui-btn',currentpage).on('click',function(e){
+					e.preventDefault();
+				});
 				
-				//$.get('http://127.0.0.1/fb.xml', function(data){
-				$.get('https://www.facebook.com/feeds/page.php?format=atom10&id=165299990160169', function(data){
+				$('#right-panel .ui-listview > li > a.ui-btn.ajaxed',currentpage).off('vclick').on('vclick',function(e){									
+					$.mobile.pageContainer.pagecontainer( "change", $(this).attr('href'), { transition: "flow"});
+				});
+				$('#right-panel .ui-listview > li > a.ui-btn.nonajaxed',currentpage).off('vclick').on('vclick',function(e){									
+					window.location.href = $(this).attr('href');
+				});
+				
+				$('#tt_btn', currentpage).on('click',function(e){
+					e.preventDefault();
+				});
+				$('#tt_btn',currentpage).off('vclick').on('vclick',function(e){
+					$.mobile.pageContainer.pagecontainer( "change", $(this).attr('href'),{transition:"fade"});
+				});
+				
+				//Appel du webservice permettant de récuperer le flux d'actu facebook de l'INSA toulouse
+				$.get('http://geda-test2.insa-toulouse.fr/m/wsFB.php', function(data){
+					
 					var i = 1;
-										
+					
+					//Parcours du XML
 					$(data).find('entry').each(function(){
+						
+						//Si jamais on veut limiter le nombre d'actu affichées:
+						//décommenter cette ligne et indiquer le nombre de ligne :
 						
 						//if(i>5)return false;
 						
-						//création du sommaire
+						//Récupération des infos et contenue dans le xml
 						var article = $(this);
-						//alert(article.text());
+						
 						var titre = article.find('title').text();
 						
 						var description = article.find('content').text();
+						
 						var img = $('<div>'+description+'</div>').find('img').attr('src');
 							
 						if(!img) img = $('<div>'+description+'</div>').find('a').attr("href");
-						//alert('4');	
-						//if(!img) img = $(description).filter('a').text();
-						
-						
-					
-						
-						
+										
 						var url = article.find('link').attr('href');
 						
-						
-						
 						var date = article.find('updated').text();
-						
 						var dateArr = date.split('T');
 						var day = dateArr[0].split('-');
 						var hour = dateArr[1].split('+');
-						if(!img) img = 'img/icons/ban.svg';
 						
-						var content = '<li><a href="#" onclick="navigator.app.loadUrl(\''+url+'\',{ openExternal:true })" rel="external" ><img src="'+img+'" /><h2>'+titre+'</h2><p><small>le '+day[2]+'-'+day[1]+'-'+day[0]+' à '+hour[0]+'</small> </p></a></li>';
+						//S'il n'y a pas d'image, on met un image par défaut
+						if(!img) img = 'img/no_img_defaut.png';
 						
+						//Contenu d'une ligne de type jquerymobile listview représentant l'actu facebook.
+						//Un click sur cette ligne ouvrira le post facebook dans le navigateur
+						var content = '<li class="ui-li-has-thumb"><a href="#" onclick="navigator.app.loadUrl(\''+url+'\',{ openExternal:true })" rel="external" ><span class="thumb_container"><img src="'+img+'" /></span><h2>'+titre+'</h2><p><small>le '+day[2]+'-'+day[1]+'-'+day[0]+' à '+hour[0]+'</small> </p></a></li>';
+						
+						//on vire le gif de chargement
 						$("#facebook_page #loader").hide();
-						//contenu comple de la page
-						/*var newPage = '<div style="display:none" class="fb_content"><h2>'+titre+'</h2><p><p><small>le '+day[2]+'-'+day[1]+'-'+day[0]+' à '+hour[0]+'</small></p><p>'+description+'</p><p style="clear:both;text-align:right;margin-top:10px"><a style="text-decoration:none" href="#" onclick="navigator.app.loadUrl(\''+url+'\',{ openExternal:true })" rel="external" >&raquo; Voir sur le site Internet</a></p></div>';*/
+						
+						//On ajoute la ligne au dom de la page
 						$('#fb-feed').append(content);
-						//$('#fb-feed').append(content);
 						
 
 						i++;
@@ -127,7 +159,7 @@
 					
 					
 					
-				}).fail(function(){
+				}).fail(function( jqXHR, textStatus, errorThrown ){
 					$("#facebook_page #loader").hide();
 					$('#facebook_page #error_message').html('Erreur de chargement du flux Facebook').show();
 				});

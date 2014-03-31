@@ -1,0 +1,4 @@
+<nine-patch
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:scr="@drawable/screen"
+android:dither="false"/>
