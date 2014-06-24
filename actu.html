@@ -139,7 +139,7 @@
 						var content = '<li class="ui-li-has-thumb"><a href="#rss_page" data-transition="slide"><span class="thumb_container"><img src="'+img+'" /></span><h2>'+titre+'</h2><p><small>'+dateArr[1]+' '+dateArr[2]+' '+dateArr[3]+'</small>'+main_content+'</p></a></li>';
 						
 						//contenu de la page de l'actu complete
-						var newPage = '<div style="display:none" class="rss_content"><h2>'+titre+'</h2><p><p><small>'+dateArr[1]+' '+dateArr[2]+' '+dateArr[3]+' - '+dateArr[4]+'</small></p><p>'+description.html()+'</p><p style="clear:both;text-align:right;margin-top:10px"><a style="text-decoration:none" href="#" onclick="navigator.app.loadUrl(\''+url+'\',{ openExternal:true })" rel="external" >&raquo; Voir sur le site Internet</a></p></div>';
+						var newPage = '<div style="display:none" class="rss_content"><h2>'+titre+'</h2><p><p><small>'+dateArr[1]+' '+dateArr[2]+' '+dateArr[3]+' - '+dateArr[4]+'</small></p><p>'+description.html()+'</p><p style="clear:both;text-align:right;margin-top:10px"><a style="text-decoration:none" href="#" onclick="window.open('+url+', '_system');" rel="external" >&raquo; Voir sur le site Internet</a></p></div>';
 						//on vire le gif de chargement
 						$("#actu_page #loader").hide();
 						//on ajoute le contenu au dom
