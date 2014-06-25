@@ -91,7 +91,7 @@
     -->
     <access origin="*"/> <!-- allow local pages -->
     
-  <access origin="http://insa-toulouse.fr" browserOnly="true" />
+  <access origin="http://www.insa-toulouse.fr" browserOnly="true" />
     
     
     <!--
