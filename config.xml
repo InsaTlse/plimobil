@@ -53,6 +53,8 @@
         A list of available plugins are available at https://build.phonegap.com/docs/plugins
     -->
 	<gap:plugin name="org.apache.cordova.splashscreen" version="0.2.7" />
+	<gap:plugin name="org.nom.inappbrowser" version="1" />
+	
     <!-- Define app icon for each platform. -->
     <icon src="icon.png" />
     <icon src="res/icons/android/icon-36-ldpi.png"   gap:platform="android"    gap:density="ldpi" />
