@@ -4,7 +4,7 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
   xmlns:gap = "http://phonegap.com/ns/1.0"
   id        = "HLR2Y28SW3.fr.insa-toulouse.InsaDeToulouse"
-  version   = "0.1.4-2">
+  version   = "0.1.4-3">
 
   <name>INSA Toulouse</name>
 
@@ -91,8 +91,7 @@
     -->
     <access origin="*"/> <!-- allow local pages -->
     
-    <!-- make external links open in browser, not take over the webview -->
-    <access origin="insa-toulouse.fr" subdomains="true" browserOnly="true" />
+  
     
     
     <!--
