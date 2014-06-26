@@ -9,8 +9,8 @@
 	 xml:space="preserve">
 <defs>
 </defs>
-<circle fill="#30529D" cx="4.497" cy="4.497" r="4.497"/>
-<circle fill="#30529D" cx="4.497" cy="19.917" r="4.497"/>
-<circle fill="#30529D" cx="4.497" cy="35.335" r="4.497"/>
+<circle fill="#E42618" cx="4.497" cy="4.497" r="4.497"/>
+<circle fill="#E42618" cx="4.497" cy="19.917" r="4.497"/>
+<circle fill="#E42618" cx="4.497" cy="35.335" r="4.497"/>
 <text transform="matrix(1 0 0 1 7.1079 13.5215)" opacity="0" font-family="'MyriadPro-Regular'" font-size="12">a</text>
 </svg>

@@ -8,7 +8,7 @@
 	 x="0px" y="0px" width="128px" height="128px" viewBox="0 0 128 128" enable-background="new 0 0 128 128" xml:space="preserve">
 <defs>
 </defs>
-<circle fill="#30529D" cx="64" cy="64.194" r="63.5"/>
+<circle fill="#E42618" cx="64" cy="64.194" r="63.5"/>
 <polyline fill="none" points="128,0 128,128 0,128 "/>
 <path fill="#FFFFFF" d="M21.135,45.607h8.464v32.667h-8.464V45.607z"/>
 <path fill="#FFFFFF" d="M33.285,45.607h9.465l5.46,20.131h0.091V45.607h7.918v32.667h-9.283l-5.642-20.176h-0.091v20.176h-7.917
