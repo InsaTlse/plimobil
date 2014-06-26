@@ -143,7 +143,7 @@
 						
 						//Contenu d'une ligne de type jquerymobile listview représentant l'actu facebook.
 						//Un click sur cette ligne ouvrira le post facebook dans le navigateur
-						var content = '<li class="ui-li-has-thumb"><a href="#" onclick="navigator.app.loadUrl(\''+url+'\',{ openExternal:true })" rel="external" ><span class="thumb_container"><img src="'+img+'" /></span><h2>'+titre+'</h2><p><small>le '+day[2]+'-'+day[1]+'-'+day[0]+' à '+hour[0]+'</small> </p></a></li>';
+						var content = '<li class="ui-li-has-thumb"><a href="#" onclick="window.open(\''+url+'\', \'_blank\',\'location=yes\')" rel="external" ><span class="thumb_container"><img src="'+img+'" /></span><h2>'+titre+'</h2><p><small>le '+day[2]+'-'+day[1]+'-'+day[0]+' à '+hour[0]+'</small> </p></a></li>';
 						
 						//on vire le gif de chargement
 						$("#facebook_page #loader").hide();
