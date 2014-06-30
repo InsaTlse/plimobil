@@ -19,6 +19,12 @@
 			$.mobile.allowCrossDomainPages = true;
 			$.mobile.phonegapNavigationEnable = true;
 			
+			function loadUrlPg(url,target){
+				if(navigator.app){
+					navigator.app.loadUrl(\''+url+'\',{ openExternal:true });
+				}else{
+					window.open(\''+url+'\', '_system','location=no');
+			}
 			
 		</script>
 
@@ -51,7 +57,7 @@
 						</a>
 					</li>
 					<li>
-						<a href="#" onclick="navigator.app.loadUrl('http://catalogue.univ-toulouse.fr/ipac20/ipac.jsp?&profile=insa&menu=account',{ openExternal:true })" data-ajax="false" >
+						<a href="#" onclick="loadUrlPg('http://catalogue.univ-toulouse.fr/ipac20/ipac.jsp?&profile=insa&menu=account','_system')" data-ajax="false" >
 							<span class="custom_listview_thumbnail"><img src="img/icons/user.svg"></span>
 							<h2>Mon compte</h2>
 						</a>
