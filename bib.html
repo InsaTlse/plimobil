@@ -19,15 +19,29 @@
 			$.mobile.allowCrossDomainPages = true;
 			$.mobile.phonegapNavigationEnable = true;
 			
-			function loadUrlPg(url,target){
-				if(navigator.app){
-					navigator.app.loadUrl(\''+url+'\',{ openExternal:true });
-				}else{
-					window.open(\''+url+'\', '_system','location=no');
-			}
+		
 			
 		</script>
-
+		<script>
+		function loadUrlPg(url,target){
+				/*if(navigator.app){
+					navigator.app.loadUrl(\''+url+'\',{ openExternal:true });
+				}else{
+					window.open(\''+url+'\', '_blank');
+					//window.open(\''+url+'\', '_system','location=no');
+				}
+				*/
+				if(device.platform === 'Android') {
+				navigator.app.loadUrl(url, {openExternal:true});
+					} else {
+				window.open(url, '_system');
+				}
+				
+				//alert('test');
+			}
+		
+		</script>
+		
 	</head>
 	<body>
 		<div data-role="page" id="bib_page" data-theme="b" data-dom-cache="true">
@@ -134,7 +148,9 @@
 				window.location.href = $(this).attr('href');
 			});
 			
-		})
+		});
+		
+			
 		</script>
 
 		</div>
