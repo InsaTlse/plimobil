@@ -8,43 +8,25 @@
 		
 		<link rel="stylesheet" href="js/jquery.mobile-1.4.2.css" />
 		<link rel="stylesheet" href="css/custom.css" />
-		<!--<script src="js/index.js"></script>-->	
+		<!--<script src="js/index.js"></script>-->
 		<script src="cordova.js"></script>
 		<script src="js/jquery-2.1.0.min.js"></script>
 		<script src="js/jquery.mobile-1.4.2.min.js"></script>
 		<script src="js/jquery.ui.map.full.min.js"></script>
+		
 		<!--<script src="cordova_plugins.js"></script>-->
 		<script>
+		
 			$.support.cors = true;
 			$.mobile.allowCrossDomainPages = true;
 			$.mobile.phonegapNavigationEnable = true;
 			
-		
 			
 		</script>
-		<script>
-		function loadUrlPg(url,target){
-				/*if(navigator.app){
-					navigator.app.loadUrl(\''+url+'\',{ openExternal:true });
-				}else{
-					window.open(\''+url+'\', '_blank');
-					//window.open(\''+url+'\', '_system','location=no');
-				}
-				
-				if(device.platform === 'Android') {
-				navigator.app.loadUrl(url, {openExternal:true});
-					} else {
-				window.open(url, '_system');
-				}
-				*/
-				alert("device : "+device.platform);
-			}
-		
-		</script>
-		
+
 	</head>
 	<body>
-		<div data-role="page" id="bib_page" data-theme="b" data-dom-cache="true">
+		<div data-role="page" id="actu_page"  data-theme="b" data-dom-cache="true">
 			
 			<header data-role="header" data-position="fixed">
 				<a href="index.html" id="home_button" data-icon="gohome" data-role="button" data-iconpos="notext" class="big-btn ui-nodisc-icon big-icon" data-corners="false" data-transition="pop" data-direction="reverse">Retour</a>
@@ -52,60 +34,17 @@
 				<a id="panel_button" data-icon="menudvp" data-iconpos="notext" class="big-btn ui-nodisc-icon big-icon" data-corners="false">Menu</a>
 			</header>
 			
-			<section data-role="content" >
+			<section data-role="content">
+			
 				
-				<div style="height:280px; text-align:center" onclick="navigator.app.loadUrl('http://www.pinterest.com/bibinsatlse/nouveautés/',{ openExternal:true })" >
-					<img style="height:32px" src="img/icons/pinterest.svg" /><br />
-					<div id="pinterest_widget" style="pointer-events:none">
-						<a data-pin-do="embedBoard" href="http://www.pinterest.com/bibinsatlse/nouveautés/" data-pin-scale-width="100" data-pin-scale-height="100" data-pin-board-width="720"><img src="js/images/ajax-loader.gif" /></a>
-						<!-- Please call pinit.js only once per page -->
-						</div>
-					<script type="text/javascript">!function(a,b,c){var d,e,f;f="PIN_"+~~((new Date).getTime()/864e5),a[f]||(a[f]=!0,a.setTimeout(function(){d=b.getElementsByTagName("SCRIPT")[0],e=b.createElement("SCRIPT"),e.type="text/javascript",e.async=!0,e.src=c,d.parentNode.insertBefore(e,d)},10))}(window,document,"http://assets.pinterest.com/js/pinit_main.js");</script>
-					
-				</div>
-				<ul data-role="listview" id="bib-menu">
-					<li>
-						<a href="#" onclick="navigator.app.loadUrl('mailto:bibinsa@insa-toulouse.fr',{ openExternal:true })" data-ajax="false" >
-							<span class="custom_listview_thumbnail"><img src="img/icons/calendar.svg" ></span>
-							<h2>Reservation</h2>
-						</a>
-					</li>
-					<li>
-						<a href="#" onclick="loadUrlPg('http://catalogue.univ-toulouse.fr/ipac20/ipac.jsp?&profile=insa&menu=account','_system')" data-ajax="false" >
-							<span class="custom_listview_thumbnail"><img src="img/icons/user.svg"></span>
-							<h2>Mon compte</h2>
-						</a>
-					</li>
-					<li>
-						<!--<a href="#" onclick="navigator.app.loadUrl('fb://profile/384209365016197',{ openExternal:true })" data-ajax="false" >-->
-						<a href="#" onclick="navigator.app.loadUrl('https://www.facebook.com/bibinsatoulouse',{ openExternal:true })" data-ajax="false" >
-							<span class="custom_listview_thumbnail"><img src="img/icons/facebook.svg"></span>
-							<h2>Page Facebook</h2>
-						</a>
-					</li>
-					<li>
-						<a href="#" onclick="navigator.app.loadUrl('mailto:bibinsa@insa-toulouse.fr',{ openExternal:true })" data-ajax="false" >
-							<span class="custom_listview_thumbnail"><img src="img/icons/clock-o.svg"></span>
-							<h2>Horaires d'ouverture</h2>
-						</a>
-					</li>
-					<li>
-						<a href="#" onclick="navigator.app.loadUrl('mailto:bibinsa@insa-toulouse.fr',{ openExternal:true })" data-ajax="false" >
-							<span class="custom_listview_thumbnail"><img src="img/icons/envelope.svg"></span>
-							<h2>Contact</h2>
-						</a>
-					</li>
-				</ul>
-				
-				
-					
-				
+				<p id="error_message" style="text-align:center;display:none;"></p>
+				<ul data-role="listview" id="rss-feed"></ul>
 								
 				
 			</section>
 			<!-- /panel -->
-			<div data-role="panel" id="right-panel" data-position-fixed="true" data-position="right" data-display="overlay" data-theme="b" >
-				<div class="ui-panel-inner">
+			<div data-role="panel" id="right-panel" data-position="right" data-position-fixed="true" data-display="overlay" data-theme="b">
+				<div class="ui-panel-inner">	
 					<ul data-role="listview" style="z-index=-100" >
 						<li class="listview_title">Aller à la rubrique..</li>
 						<li data-icon="home2"><a href="index.html" class="ajaxed">Accueil</a></li>
@@ -123,36 +62,146 @@
 					</ul>
 				</div>
 			</div>
-		<script>
-		$('#bib_page').on('pagecreate',function(){
-			//NAVIGATION
-			var currentpage = $(this);
-			$('#home_button, #panel_button', currentpage).on('click',function(e){
-				e.preventDefault();
-			});
-			$('#home_button',currentpage).off('vclick').on('vclick',function(e){
-				$.mobile.pageContainer.pagecontainer( "change", $(this).attr('href'),{reverse:true});
-			});
-			
-			$('#panel_button',this).off('vclick').on('vclick',function(e){
-				$('#right-panel',currentpage).panel( "open" );
-			});
-			$('#right-panel .ui-listview > li > a.ui-btn',currentpage).on('click',function(e){
-				e.preventDefault();
-			});
-			
-			$('#right-panel .ui-listview > li > a.ui-btn.ajaxed',currentpage).off('vclick').on('vclick',function(e){									
-				$.mobile.pageContainer.pagecontainer( "change", $(this).attr('href'), { transition: "flow"});
-			});
-			$('#right-panel .ui-listview > li > a.ui-btn.nonajaxed',currentpage).off('vclick').on('vclick',function(e){									
-				window.location.href = $(this).attr('href');
-			});
-			
-		});
 		
-			
-		</script>
+		
 
+		
+		<script>
+			$(document).one('pagecreate', '#actu_page', function() {
+				//NAVIGATION
+				var currentpage = $(this);
+				$('#home_button, #panel_button', currentpage).on('click',function(e){
+					e.preventDefault();
+				});
+				$('#home_button',currentpage).off('vclick').on('vclick',function(e){
+					$.mobile.pageContainer.pagecontainer( "change", $(this).attr('href'),{reverse:true});
+				});
+				
+				$('#panel_button',this).off('vclick').on('vclick',function(e){
+					$('#right-panel',currentpage).panel( "open" );
+				});
+				
+				$('#right-panel .ui-listview > li > a.ui-btn',currentpage).on('click',function(e){
+					e.preventDefault();
+				});
+				
+				$('#right-panel .ui-listview > li > a.ui-btn.ajaxed',currentpage).off('vclick').on('vclick',function(e){									
+					$.mobile.pageContainer.pagecontainer( "change", $(this).attr('href'), { transition: "flow"});
+				});
+				$('#right-panel .ui-listview > li > a.ui-btn.nonajaxed',currentpage).off('vclick').on('vclick',function(e){									
+					window.location.href = $(this).attr('href');
+				});
+				
+				
+				
+				
+				//Récupère le flux d'actu distant
+				$.get('http://feeds.feedburner.com/Actualites-BibINSA?format=xml', function(data){
+					var i = 1;
+					//parcours XML des noeuds "item" du flux rss
+					$(data).find('item').each(function(){
+					
+						//Si jamais on veut limiter le nombre d'actu affichées:
+						//décommenter cette ligne et indiquer le nombre de ligne :
+						
+						//if(i>5)return false;
+						
+						//création du sommaire
+						
+						//recupération des différentes infos
+						
+						var article = $(this);
+						var titre = article.find('title').text();
+						var description = article.find('description').text();
+						var description = $('<div>'+description+'</div>');
+						
+						//Si on trouve une image dans le contenu de l'article (oui..) on recupère le lien src
+						if(description.find('img:first').attr('src')){
+							var img = description.find('img:first').attr('src');
+						}
+						//sinon, on affichera une image par défaut
+						else{
+							var img = 'img/no_img_defaut.png';
+						}
+						
+						var main_content = description.filter('div:not(img)').text();
+						
+						//si du contenu existe, on ajoute un tiret avant 
+						//l'interet et surtout de ne pas afficher de tiret s'il n'y a pas de contenu
+						if($.trim(main_content)) main_content = " - "+main_content;
+						
+						var url = article.find('guid').text();
+						var date = article.find('pubDate').text();
+						var dateArr = date.split(' ');
+						
+						//contenu du résumé de l'actu dans le sommaire de type jquery mobile listview
+						//un click sur ce résumé ouvrira une page avec le contenu conplet
+						var content = '<li class="ui-li-has-thumb"><a href="#rss_page" data-transition="slide"><span class="thumb_container"><img src="'+img+'" /></span><h2>'+titre+'</h2><p><small>'+dateArr[1]+' '+dateArr[2]+' '+dateArr[3]+'</small>'+main_content+'</p></a></li>';
+						
+						//contenu de la page de l'actu complete
+						var newPage = '<div style="display:none" class="rss_content"><h2>'+titre+'</h2><p><p><small>'+dateArr[1]+' '+dateArr[2]+' '+dateArr[3]+' - '+dateArr[4]+'</small></p><p>'+description.html()+'</p><p style="clear:both;text-align:right;margin-top:10px"><a style="text-decoration:none" href="#" onclick="window.open(\''+url+'\', \'_blank\',\'location=yes\')" rel="external" >&raquo; Voir sur le site Internet</a></p></div>';
+						//on vire le gif de chargement
+						$("#actu_page #loader").hide();
+						//on ajoute le contenu au dom
+						$('#rss-feed').append(content+newPage);
+						
+
+						i++;
+					});
+					
+					$('#rss-feed').listview('refresh');
+					
+					//clic sur une actu ouvre une page plus détaillée de l'actu
+					//le contenu de cette nouvelle page est mis à jour dynamiquement (au click)
+					$('#rss-feed li a').off('vclick').on('vclick',function(){
+						$('#rss_page #rss_content').html($(this).parent().next().html());
+										
+					});
+					
+				}).fail(function(){
+					$("#actu_page #loader").hide();
+					$('#actu_page #error_message').html('Erreur de chargement du flux d\'actu').show();
+				});
+				
+				
+				/*$( "#actu_page" ).on( "swipeleft", function() {
+					
+						// We check if there is no open panel on the page because otherwise
+						// a swipe to close the left panel would also open the right panel (and v.v.).
+						// We do this by checking the data that the framework stores on the page element (panel: open).
+						if ( $.mobile.activePage.jqmData( "panel" ) !== "open" ) {
+							
+								$( "#right-panel" ).panel( "open" );
+							
+						}
+				});*/
+			});
+		</script>
+		
+		
+		</div>
+		<div data-role="page" id="rss_page"  data-theme="b">
+			<header data-role="header">
+				<a href="#actu_page" id="actuback" data-icon="bback" data-role="button" data-iconpos="notext" class="big-btn ui-nodisc-icon big-icon" data-corners="false" data-transition="slide" data-direction="reverse">Retour</a>
+				<h1>Actualité</h1>
+			</header>
+			<section data-role="content" id="rss_content"></section>
+			<script>
+			$(document).on('pagecreate', function() {
+				//NAVIGATION
+				var currentpage = $(this);
+						
+				$('#actuback', currentpage).on('click',function(e){
+					e.preventDefault();
+				});
+				
+				$('#actuback',currentpage).off('vclick').on('vclick',function(e){
+					$.mobile.pageContainer.pagecontainer( "change", $(this).attr('href'),{transition:"slide",reverse:true});
+				});
+				
+			});
+			
+			</script>
 		</div>
 		
 	</body>

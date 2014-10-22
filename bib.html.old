@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>App Insa Alpha 1</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />		
+		<meta name="viewport" content="width=device-width, user-scalable=no" />
+		
+		<link rel="stylesheet" href="js/jquery.mobile-1.4.2.css" />
+		<link rel="stylesheet" href="css/custom.css" />
+		<!--<script src="js/index.js"></script>-->	
+		<script src="cordova.js"></script>
+		<script src="js/jquery-2.1.0.min.js"></script>
+		<script src="js/jquery.mobile-1.4.2.min.js"></script>
+		<script src="js/jquery.ui.map.full.min.js"></script>
+		<!--<script src="cordova_plugins.js"></script>-->
+		<script>
+			$.support.cors = true;
+			$.mobile.allowCrossDomainPages = true;
+			$.mobile.phonegapNavigationEnable = true;
+			
+		
+			
+		</script>
+		<script>
+		function loadUrlPg(url,target){
+				/*if(navigator.app){
+					navigator.app.loadUrl(\''+url+'\',{ openExternal:true });
+				}else{
+					window.open(\''+url+'\', '_blank');
+					//window.open(\''+url+'\', '_system','location=no');
+				}
+				
+				if(device.platform === 'Android') {
+				navigator.app.loadUrl(url, {openExternal:true});
+					} else {
+				window.open(url, '_system');
+				}
+				*/
+				alert("device : "+device.platform);
+			}
+		
+		</script>
+		
+	</head>
+	<body>
+		<div data-role="page" id="bib_page" data-theme="b" data-dom-cache="true">
+			
+			<header data-role="header" data-position="fixed">
+				<a href="index.html" id="home_button" data-icon="gohome" data-role="button" data-iconpos="notext" class="big-btn ui-nodisc-icon big-icon" data-corners="false" data-transition="pop" data-direction="reverse">Retour</a>
+				<h1>Bib'INSA</h1>
+				<a id="panel_button" data-icon="menudvp" data-iconpos="notext" class="big-btn ui-nodisc-icon big-icon" data-corners="false">Menu</a>
+			</header>
+			
+			<section data-role="content" >
+				
+				<div style="height:280px; text-align:center" onclick="navigator.app.loadUrl('http://www.pinterest.com/bibinsatlse/nouveautés/',{ openExternal:true })" >
+					<img style="height:32px" src="img/icons/pinterest.svg" /><br />
+					<div id="pinterest_widget" style="pointer-events:none">
+						<a data-pin-do="embedBoard" href="http://www.pinterest.com/bibinsatlse/nouveautés/" data-pin-scale-width="100" data-pin-scale-height="100" data-pin-board-width="720"><img src="js/images/ajax-loader.gif" /></a>
+						<!-- Please call pinit.js only once per page -->
+						</div>
+					<script type="text/javascript">!function(a,b,c){var d,e,f;f="PIN_"+~~((new Date).getTime()/864e5),a[f]||(a[f]=!0,a.setTimeout(function(){d=b.getElementsByTagName("SCRIPT")[0],e=b.createElement("SCRIPT"),e.type="text/javascript",e.async=!0,e.src=c,d.parentNode.insertBefore(e,d)},10))}(window,document,"http://assets.pinterest.com/js/pinit_main.js");</script>
+					
+				</div>
+				<ul data-role="listview" id="bib-menu">
+					<li>
+						<a href="#" onclick="navigator.app.loadUrl('mailto:bibinsa@insa-toulouse.fr',{ openExternal:true })" data-ajax="false" >
+							<span class="custom_listview_thumbnail"><img src="img/icons/calendar.svg" ></span>
+							<h2>Reservation</h2>
+						</a>
+					</li>
+					<li>
+						<a href="#" onclick="loadUrlPg('http://catalogue.univ-toulouse.fr/ipac20/ipac.jsp?&profile=insa&menu=account','_system')" data-ajax="false" >
+							<span class="custom_listview_thumbnail"><img src="img/icons/user.svg"></span>
+							<h2>Mon compte</h2>
+						</a>
+					</li>
+					<li>
+						<!--<a href="#" onclick="navigator.app.loadUrl('fb://profile/384209365016197',{ openExternal:true })" data-ajax="false" >-->
+						<a href="#" onclick="navigator.app.loadUrl('https://www.facebook.com/bibinsatoulouse',{ openExternal:true })" data-ajax="false" >
+							<span class="custom_listview_thumbnail"><img src="img/icons/facebook.svg"></span>
+							<h2>Page Facebook</h2>
+						</a>
+					</li>
+					<li>
+						<a href="#" onclick="navigator.app.loadUrl('mailto:bibinsa@insa-toulouse.fr',{ openExternal:true })" data-ajax="false" >
+							<span class="custom_listview_thumbnail"><img src="img/icons/clock-o.svg"></span>
+							<h2>Horaires d'ouverture</h2>
+						</a>
+					</li>
+					<li>
+						<a href="#" onclick="navigator.app.loadUrl('mailto:bibinsa@insa-toulouse.fr',{ openExternal:true })" data-ajax="false" >
+							<span class="custom_listview_thumbnail"><img src="img/icons/envelope.svg"></span>
+							<h2>Contact</h2>
+						</a>
+					</li>
+				</ul>
+				
+				
+					
+				
+								
+				
+			</section>
+			<!-- /panel -->
+			<div data-role="panel" id="right-panel" data-position-fixed="true" data-position="right" data-display="overlay" data-theme="b" >
+				<div class="ui-panel-inner">
+					<ul data-role="listview" style="z-index=-100" >
+						<li class="listview_title">Aller à la rubrique..</li>
+						<li data-icon="home2"><a href="index.html" class="ajaxed">Accueil</a></li>
+						<li data-icon="ecole"><a href="pres.html" class="ajaxed">Votre école</a></li>
+						<li data-icon="rss"><a href="actu.html" class="nonajaxed">Actualités</a></li>
+						<li data-icon="edt"><a href="edt.html" class="ajaxed">Emploi du Temps</a></li>
+						<li data-icon="sun"><a href="meteo.html" class="ajaxed">Météo</a></li>
+						<li data-icon="cutlery"><a href="ru.html" class="ajaxed">Menu Self</a></li>
+						<li data-icon="reseau"><a href="facebook.html" class="ajaxed">Réseaux Sociaux</a></li>
+						<li data-icon="plan"><a href="plan.html" class="ajaxed">Plan d'accès</a></li>
+						<li data-icon="book"><a href="bib.html" class="ajaxed">Bib'INSA</a></li>
+						<li data-icon="wifi"><a href="wifi.html" class="ajaxed">WiFi</a></li>
+						<li data-icon="phone"><a href="contact.html" class="ajaxed">Contact</a></li>
+						<li data-icon="info"><a href="about.html" class="ajaxed">A propos</a></li>
+					</ul>
+				</div>
+			</div>
+		<script>
+		$('#bib_page').on('pagecreate',function(){
+			//NAVIGATION
+			var currentpage = $(this);
+			$('#home_button, #panel_button', currentpage).on('click',function(e){
+				e.preventDefault();
+			});
+			$('#home_button',currentpage).off('vclick').on('vclick',function(e){
+				$.mobile.pageContainer.pagecontainer( "change", $(this).attr('href'),{reverse:true});
+			});
+			
+			$('#panel_button',this).off('vclick').on('vclick',function(e){
+				$('#right-panel',currentpage).panel( "open" );
+			});
+			$('#right-panel .ui-listview > li > a.ui-btn',currentpage).on('click',function(e){
+				e.preventDefault();
+			});
+			
+			$('#right-panel .ui-listview > li > a.ui-btn.ajaxed',currentpage).off('vclick').on('vclick',function(e){									
+				$.mobile.pageContainer.pagecontainer( "change", $(this).attr('href'), { transition: "flow"});
+			});
+			$('#right-panel .ui-listview > li > a.ui-btn.nonajaxed',currentpage).off('vclick').on('vclick',function(e){									
+				window.location.href = $(this).attr('href');
+			});
+			
+		});
+		
+			
+		</script>
+
+		</div>
+		
+	</body>
+</html>
