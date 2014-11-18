@@ -26,7 +26,7 @@
 
 	</head>
 	<body>
-		<div data-role="page" id="actu_page"  data-theme="b" data-dom-cache="true">
+		<div data-role="page" id="bib_page"  data-theme="b" data-dom-cache="true">
 			
 			<header data-role="header" data-position="fixed">
 				<a href="index.html" id="home_button" data-icon="gohome" data-role="button" data-iconpos="notext" class="big-btn ui-nodisc-icon big-icon" data-corners="false" data-transition="pop" data-direction="reverse">Retour</a>
@@ -67,7 +67,7 @@
 
 		
 		<script>
-			$(document).one('pagecreate', '#actu_page', function() {
+			$(document).one('pagecreate', '#bib_page', function() {
 				//NAVIGATION
 				var currentpage = $(this);
 				$('#home_button, #panel_button', currentpage).on('click',function(e){
@@ -159,22 +159,12 @@
 					});
 					
 				}).fail(function(){
-					$("#actu_page #loader").hide();
-					$('#actu_page #error_message').html('Erreur de chargement du flux d\'actu').show();
+					$("#bib_page #loader").hide();
+					$('#bib_page #error_message').html('Erreur de chargement du flux d\'actu').show();
 				});
 				
 				
-				/*$( "#actu_page" ).on( "swipeleft", function() {
-					
-						// We check if there is no open panel on the page because otherwise
-						// a swipe to close the left panel would also open the right panel (and v.v.).
-						// We do this by checking the data that the framework stores on the page element (panel: open).
-						if ( $.mobile.activePage.jqmData( "panel" ) !== "open" ) {
-							
-								$( "#right-panel" ).panel( "open" );
-							
-						}
-				});*/
+		
 			});
 		</script>
 		
