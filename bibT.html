@@ -26,11 +26,11 @@
 
 	</head>
 	<body>
-		<div data-role="page" id="actubib_page"  data-theme="b" data-dom-cache="true">
+		<div data-role="page" id="bib_page"  data-theme="b" data-dom-cache="true">
 			
 			<header data-role="header" data-position="fixed">
 				<a href="index.html" id="home_button" data-icon="gohome" data-role="button" data-iconpos="notext" class="big-btn ui-nodisc-icon big-icon" data-corners="false" data-transition="pop" data-direction="reverse">Retour</a>
-				<h1>Actualités</h1>
+				<h1>Bib'INSA</h1>
 				<a id="panel_button" data-icon="menudvp" data-iconpos="notext" class="big-btn ui-nodisc-icon big-icon" data-corners="false">Menu</a>
 			</header>
 			
@@ -38,7 +38,7 @@
 			
 				
 				<p id="error_message" style="text-align:center;display:none;"></p>
-				<ul data-role="listview" id="rss-feed"></ul>
+				<ul data-role="listview" id="rss-bib-feed"></ul>
 								
 				
 			</section>
@@ -67,7 +67,7 @@
 
 		
 		<script>
-			$(document).one('pagecreate', '#actubib_page', function() {
+			$(document).one('pagecreate', '#bib_page', function() {
 				//NAVIGATION
 				var currentpage = $(this);
 				$('#home_button, #panel_button', currentpage).on('click',function(e){
@@ -96,7 +96,7 @@
 				
 				
 				//Récupère le flux d'actu distant
-				$.get('http://www.insa-toulouse.fr/plugins/web/default/fr/filter/org.ametys.web.accueil.RSS/rss.xml', function(data){
+				$.get('http://feeds.feedburner.com/Actualites-BibINSA?format=xml', function(data){
 					var i = 1;
 					//parcours XML des noeuds "item" du flux rss
 					$(data).find('item').each(function(){
@@ -136,66 +136,56 @@
 						
 						//contenu du résumé de l'actu dans le sommaire de type jquery mobile listview
 						//un click sur ce résumé ouvrira une page avec le contenu conplet
-						var content = '<li class="ui-li-has-thumb"><a href="#rssbib_page" data-transition="slide"><span class="thumb_container"><img src="'+img+'" /></span><h2>'+titre+'</h2><p><small>'+dateArr[1]+' '+dateArr[2]+' '+dateArr[3]+'</small>'+main_content+'</p></a></li>';
+						var content = '<li class="ui-li-has-thumb"><a href="#bib_page" data-transition="slide"><span class="thumb_container"><img src="'+img+'" /></span><h2>'+titre+'</h2><p><small>'+dateArr[1]+' '+dateArr[2]+' '+dateArr[3]+'</small>'+main_content+'</p></a></li>';
 						
 						//contenu de la page de l'actu complete
-						var newPage = '<div style="display:none" class="rssbib_content"><h2>'+titre+'</h2><p><p><small>'+dateArr[1]+' '+dateArr[2]+' '+dateArr[3]+' - '+dateArr[4]+'</small></p><p>'+description.html()+'</p><p style="clear:both;text-align:right;margin-top:10px"><a style="text-decoration:none" href="#" onclick="window.open(\''+url+'\', \'_blank\',\'location=yes\')" rel="external" >&raquo; Voir sur le site Internet</a></p></div>';
+						var newPage = '<div style="display:none" class="rss_bib_content"><h2>'+titre+'</h2><p><p><small>'+dateArr[1]+' '+dateArr[2]+' '+dateArr[3]+' - '+dateArr[4]+'</small></p><p>'+description.html()+'</p><p style="clear:both;text-align:right;margin-top:10px"><a style="text-decoration:none" href="#" onclick="window.open(\''+url+'\', \'_blank\',\'location=yes\')" rel="external" >&raquo; Voir sur le site Internet</a></p></div>';
 						//on vire le gif de chargement
 						$("#actubib_page #loader").hide();
 						//on ajoute le contenu au dom
-						$('#rss-feed').append(content+newPage);
+						$('#rss-bib-feed').append(content+newPage);
 						
 
 						i++;
 					});
 					
-					$('#rss-feed').listview('refresh');
+					$('#rss-bib-feed').listview('refresh');
 					
 					//clic sur une actu ouvre une page plus détaillée de l'actu
 					//le contenu de cette nouvelle page est mis à jour dynamiquement (au click)
-					$('#rss-feed li a').off('vclick').on('vclick',function(){
-						$('#rssbib_page #rssbib_content').html($(this).parent().next().html());
+					$('#rss-bib-feed li a').off('vclick').on('vclick',function(){
+						$('#bib_page #rss_bib_content').html($(this).parent().next().html());
 										
 					});
 					
 				}).fail(function(){
-					$("#actubib_page #loader").hide();
-					$('#actubib_page #error_message').html('Erreur de chargement du flux d\'actu').show();
+					$("#bib_page #loader").hide();
+					$('#bib_page #error_message').html('Erreur de chargement du flux d\'actu').show();
 				});
 				
 				
-				/*$( "#actubib_page" ).on( "swipeleft", function() {
-					
-						// We check if there is no open panel on the page because otherwise
-						// a swipe to close the left panel would also open the right panel (and v.v.).
-						// We do this by checking the data that the framework stores on the page element (panel: open).
-						if ( $.mobile.activePage.jqmData( "panel" ) !== "open" ) {
-							
-								$( "#right-panel" ).panel( "open" );
-							
-						}
-				});*/
+		
 			});
 		</script>
 		
 		
 		</div>
-		<div data-role="page" id="rssbib_page"  data-theme="b">
+		<div data-role="page" id="#bib_page"  data-theme="b">
 			<header data-role="header">
-				<a href="#actubib_page" id="actuback" data-icon="bback" data-role="button" data-iconpos="notext" class="big-btn ui-nodisc-icon big-icon" data-corners="false" data-transition="slide" data-direction="reverse">Retour</a>
+				<a href="#actubib_page" id="actubibback" data-icon="bback" data-role="button" data-iconpos="notext" class="big-btn ui-nodisc-icon big-icon" data-corners="false" data-transition="slide" data-direction="reverse">Retour</a>
 				<h1>Actualité</h1>
 			</header>
-			<section data-role="content" id="rssbib_content"></section>
+			<section data-role="content" id="rss_bib_content"></section>
 			<script>
 			$(document).on('pagecreate', function() {
 				//NAVIGATION
 				var currentpage = $(this);
 						
-				$('#actuback', currentpage).on('click',function(e){
+				$('#actubibback', currentpage).on('click',function(e){
 					e.preventDefault();
 				});
 				
-				$('#actuback',currentpage).off('vclick').on('vclick',function(e){
+				$('#actubibback',currentpage).off('vclick').on('vclick',function(e){
 					$.mobile.pageContainer.pagecontainer( "change", $(this).attr('href'),{transition:"slide",reverse:true});
 				});
 				
