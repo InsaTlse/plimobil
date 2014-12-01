@@ -30,7 +30,7 @@
 			
 			<header data-role="header" data-position="fixed">
 				<a href="index.html" id="home_button" data-icon="gohome" data-role="button" data-iconpos="notext" class="big-btn ui-nodisc-icon big-icon" data-corners="false" data-transition="pop" data-direction="reverse">Retour</a>
-				<h1>Actualités</h1>
+				<h1>Bib'INSA</h1>
 				<a id="panel_button" data-icon="menudvp" data-iconpos="notext" class="big-btn ui-nodisc-icon big-icon" data-corners="false">Menu</a>
 			</header>
 			
@@ -38,7 +38,7 @@
 			
 				
 				<p id="error_message" style="text-align:center;display:none;"></p>
-				<ul data-role="listview" id="rss-feed"></ul>
+				<ul data-role="listview" id="rssbib-feed"></ul>
 								
 				
 			</section>
@@ -143,17 +143,17 @@
 						//on vire le gif de chargement
 						$("#actubib_page #loader").hide();
 						//on ajoute le contenu au dom
-						$('#rss-feed').append(content+newPage);
+						$('#rssbib-feed').append(content+newPage);
 						
 
 						i++;
 					});
 					
-					$('#rss-feed').listview('refresh');
+					$('#rssbib-feed').listview('refresh');
 					
 					//clic sur une actu ouvre une page plus détaillée de l'actu
 					//le contenu de cette nouvelle page est mis à jour dynamiquement (au click)
-					$('#rss-feed li a').off('vclick').on('vclick',function(){
+					$('#rssbib-feed li a').off('vclick').on('vclick',function(){
 						$('#rssbib_page #rssbib_content').html($(this).parent().next().html());
 										
 					});
