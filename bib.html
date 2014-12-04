@@ -96,7 +96,7 @@
 				
 				
 				//Récupère le flux d'actu distant
-				$.get('http://www.insa-toulouse.fr/plugins/web/default/fr/filter/org.ametys.web.accueil.RSS/rss.xml', function(data){
+				$.get('http://feeds.feedburner.com/Actualites-BibINSA?format=xml', function(data){
 					var i = 1;
 					//parcours XML des noeuds "item" du flux rss
 					$(data).find('item').each(function(){
