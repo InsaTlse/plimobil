@@ -32,14 +32,15 @@ div.home_icon{
 	border: none;
 	background: none;
 	
-}
+} 
+
 .ui-btn-icon-notext.ui-btn-right.big-btn:hover, .ui-btn-icon-notext.ui-btn-left.big-btn:hover { 
 	
 	background: #333;
 }
 .ui-btn-icon-notext.ui-btn-right.big-btn:active, .ui-btn-icon-notext.ui-btn-left.big-btn:active { 
 	
-	background: #2ad;
+	background: #E52713;
 }
 
 .big-nav-bar{
