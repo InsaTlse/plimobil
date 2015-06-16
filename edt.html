@@ -145,7 +145,7 @@ function displayAde(groupe,next){
 	//vide le tableau d'emploi du temps
 	$('#movie-table').html('');
 	//charge le nouveau tableau d'emploi du temps distant
-	$('#movie-table').load('http://geda-test2.insa-toulouse.fr/m/wsAde.php?&id='+groupe+'&to='+next_param+'&projectId=1', function( response, status, xhr ) {
+	$('#movie-table').load('http://m.insa-toulouse.fr/wsAde.php?&id='+groupe+'&to='+next_param+'&projectId=1', function( response, status, xhr ) {
 		if(!$(response).find('.title').length){
 			$('#movie-table').html('<tr><td style="text-align:center">Pas de cours trouvé ce jour</td></tr>');
 		}
@@ -208,7 +208,7 @@ function displayAde(groupe,next){
 					var json_list = null;
 					
 					//récupere la liste des groupes
-					$.getJSON('http://geda-test2.insa-toulouse.fr/m/wsAdeGrp.php?projectId=1').done(function(data,status){
+					$.getJSON('http://m.insa-toulouse.fr/wsAdeGrp.php?projectId=1').done(function(data,status){
 					
 						json_list = data;
 						//remplissage du select par les groupes

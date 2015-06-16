@@ -96,7 +96,7 @@
 				
 				
 				//Récupère le flux d'actu distant
-				$.get('http://geda-test2.insa-toulouse.fr/m/rss2.php', function(data){
+				$.get('http://m.insa-toulouse.fr/rss2.php', function(data){
 					var i = 1;
 					//parcours XML des noeuds "item" du flux rss
 					$(data).find('item').each(function(){

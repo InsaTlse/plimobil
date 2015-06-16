@@ -1,0 +1,597 @@
+/********************/
+/*     	GENERAL		*/
+/********************/
+
+h3{
+	margin-bottom: 0;
+}
+/*classes de visibilité*/
+.hidden{
+    visibility: hidden;
+}
+.shown{
+    visibility: visible;
+}
+.display_none{
+	display:none;
+}
+
+/**********************/
+/*  PINTEREST WIDGET  */
+/**********************/
+#pinterest_widget>span{
+	max-width: 100%;
+	overflow:hidden;
+}
+
+
+/*****************/
+/*   MAIN MENU   */
+/*****************/
+div.home_icon{
+	padding: 8% 0;
+}
+
+.ui-block-a, .ui-block-b, .ui-block-c{
+	text-align:center;
+	/*padding: 50px;*/
+}
+.main_menu_link{
+	display:block;
+	margin:auto;
+	border-radius:50%;
+	width: 62px;
+	height:62px;
+	margin-bottom:6px;
+	
+	
+}
+
+.main_menu_link>img{
+	margin-top: -1px;
+	margin-left: -1px;
+}
+
+.main_menu_link:hover{
+	
+	box-shadow: 0 0 15px 0 #fff;
+	
+}
+
+.main_menu_link:active{
+	
+	box-shadow: 0 0 15px 4px #fff;
+	opacity: 0.8;
+}
+
+/*****************/
+/*    HEADER     */
+/*****************/
+.ui-page .ui-header{
+	height:50px;
+	background-color:white;
+	
+}
+.ui-page .ui-header h1{
+	color:#e52713;
+	text-shadow: none;
+	margin-top: 0;
+	font-size:1.5em;
+}
+
+.ui-header .ui-title {
+	padding:.4em 0;
+    margin-right: 10%;
+    margin-left: 10%;
+}
+
+/************************/
+/* CUSTON HEADER BUTTON */
+/************************/
+.ui-btn-icon-notext.ui-btn-right.big-btn, .ui-btn-icon-notext.ui-btn-left.big-btn { 
+	height: 100%;
+	width: 52px;
+	top: 0;
+	border: none;
+	background: none;
+	
+}
+.ui-btn-icon-notext.ui-btn-right.big-btn:hover, .ui-btn-icon-notext.ui-btn-left.big-btn:hover { 
+	
+	background: #eee;
+}
+.ui-btn-icon-notext.ui-btn-right.big-btn:active, .ui-btn-icon-notext.ui-btn-left.big-btn:active { 
+	
+	background: #E42618;
+}
+
+.big-nav-bar{
+	heignt: 50px;
+}
+
+.ui-btn-icon-top.no-radius:after,
+.ui-btn-icon-left.no-radius:after, 
+.ui-btn-icon-right.no-radius:after, 
+.ui-btn-icon-bottom.no-radius:after, 
+.ui-btn-icon-notext.no-radius:after{
+	-moz-border-radius: 0em;
+	-webkit-border-radius: 0em;
+	-border-radius: 0em;
+	
+}
+
+.ui-btn-icon-top.big-icon:after,
+.ui-btn-icon-left.big-icon:after,
+.ui-btn-icon-right.big-icon:after, 
+.ui-btn-icon-bottom.big-icon:after, 
+.ui-btn-icon-notext.big-icon:after,
+.ui-btn-icon-notext.big-icon{
+	height:48px;
+	width: 48px;
+	
+	
+}
+.ui-btn-right.big-icon:after{
+	top:12px;
+	margin-left: -24px;
+}
+
+.ui-btn-left.big-icon:after{
+	
+	top:12px;
+	left: 13px;
+}
+
+.ui-btn-icon-top.big-icon{
+	padding-top : 4em;
+}
+
+.ui-btn-icon-notext.ui-btn-right.big-btn{
+	right: 0;
+	
+}
+.ui-btn-icon-notext.ui-btn-left.big-btn { 
+	
+	left: 0;
+}
+
+/***********************/
+/*      SIDE PANEL     */
+/***********************/
+
+/*Scroll dans les panels*/
+.ui-panel.ui-panel-open {
+    position:fixed;
+}
+.ui-panel-inner {
+    position: absolute;
+    top: 1px;
+    left: 0;
+    right: 0;
+    bottom: 0px;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/********************/
+/*    LISTVIEWS     */
+/********************/
+
+.ui-listview > .ui-li-static.listview_title{
+	
+	text-align: right;
+	font-style: italic;
+	padding-top: 16px;
+	padding-bottom: 13px;
+	
+
+}
+
+
+.custom_listview_thumbnail{
+	float:left;
+	height:64px;
+	width:64px;
+	text-align:center;
+	margin-right: 1em;
+	
+}
+.custom_listview_thumbnail img{
+	height: 64px;
+}
+
+
+
+.ui-listview li.ui-li-has-thumb> .ui-btn > .thumb_container{
+	position: absolute;
+	left: 0;
+	top: 0;
+	height:5em;
+	width:5em;
+	text-align: center;
+	overflow: hidden;
+}
+.ui-listview li.ui-li-has-thumb> .ui-btn > .thumb_container > img{
+	min-height:5em;
+	min-width:5em;
+	position: relative; /* allows repositioning */
+    left: 100%; /* move the whole width of the image to the right */
+    margin-left: -200%; /* magic! */
+}
+
+/****************/
+/*    NAVBAR    */
+/****************/
+.ui-page-theme-b .ui-btn.white-bottom-nav{
+	padding:6px 0 2px 0;
+	background-color: white;
+	border-color: #bbb;
+}
+
+.ui-page-theme-b .ui-btn.white-bottom-nav:hover{
+	
+	background-color: #eee;
+	
+}
+.ui-page-theme-b .ui-btn.white-bottom-nav:active{
+	
+	background-color: #E52713;
+	
+}
+
+
+
+/***************/
+/*    ICONS    */
+/***************/
+.ui-btn-icon-left:after, .ui-btn-icon-right:after, .ui-btn-icon-top:after, .ui-btn-icon-bottom:after, .ui-btn-icon-notext:after{
+	background-color: transparent;
+	-webkit-border-radius: 0;
+	border-radius: 0;
+}
+
+/*************************/
+/*      POP UP MENU      */
+/*************************/
+
+
+
+
+/*****************************/
+/*      TABLEAU CUSTOM      */
+/***************************/
+
+/*.table-stroke thead th {
+  border-bottom: 1px solid rgba(255,255, 255, .1);
+}
+.table-stroke tbody th,
+.table-stroke tbody td {
+  border-bottom: 1px solid rgba(255,255, 255, .1);
+}
+*/
+/* These apply across all breakpoints because they are outside of a media query */
+/* Make the labels light gray all caps across the board */
+.movie-list thead th,
+.movie-list tbody th .ui-table-cell-label,
+.movie-list tbody td .ui-table-cell-label {
+    text-transform: uppercase;
+    font-size: 0.9em;
+    color: rgba(255,255,255,.7);
+    font-weight: normal;
+}
+/* White bg, large blue text for rank and title */
+.movie-list tbody th {
+    font-size: 1.2em;
+    background-color: #fff;
+    color: #77bbff;
+    text-align: center;
+}
+/*  Add a bit of extra left padding for the title */
+.movie-list tbody td.title {
+    padding-left: .8em;
+	min-width: 6em;
+}
+/* Add strokes */
+.movie-list thead th {
+    border-bottom: 1px solid #d6d6d6; /* non-RGBA fallback */
+    border-bottom: 1px solid rgba(255,255,255,.4);
+}
+.movie-list tbody th,
+.movie-list tbody td {
+    border-bottom: 1px solid #e6e6e6; /* non-RGBA fallback  */
+    border-bottom: 1px solid rgba(255,255,255,.25);
+}
+/*  Custom stacked styles for mobile sizes */
+/*  Use a max-width media query so we don't have to undo these styles */
+@media (max-width: 40em) {
+    /*  Negate the margin between sections */
+	
+	.movie-list{
+		table-layout: fixed;
+	}
+	
+    .movie-list tbody th {
+        margin-top: 0;
+        text-align: left;
+    }
+	
+    /*  White bg, large blue text for rank and title */
+    .movie-list tbody th,
+    .movie-list tbody td.title {
+        display: block;
+        font-size: 1.1em;
+        /*line-height: 110%;*/
+       /* padding: .5em .5em;*/
+        background-color: #666;
+        color: #ffffff;
+        -moz-box-shadow: 0 1px 6px rgba(255,255,255,.1);
+        -webkit-box-shadow: 0 1px 6px rgba(255,255,255,.1);
+        box-shadow: 0 1px 6px rgba(255,255,255,.1);
+    }
+    /*  Hide labels for rank and title */
+    .movie-list tbody th .ui-table-cell-label,
+    .movie-list tbody td.title .ui-table-cell-label {
+       display: none;
+    }
+    /*  Position the title next to the rank, pad to the left */
+    .movie-list tbody td.title {
+        margin-top: .5em;
+        
+        border-bottom: 1px solid rgba(255,255,255,.15);
+    }
+    /*  Make the data bold */
+    .movie-list th,
+    .movie-list td {
+        font-weight: bold;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+    }
+    /* Make the label elements a percentage width */
+    /*.movie-list td .ui-table-cell-label,
+    .movie-list th .ui-table-cell-label {
+        width: 3em;
+    }*/
+}
+/* Media query to show as a standard table at wider widths */
+@media ( min-width: 40em ) {
+
+	.movie-list{
+		table-layout: initial;
+	}
+    /* Show the table header rows */
+    .movie-list td,
+    .movie-list th,
+    .movie-list tbody th,
+    .movie-list tbody td,
+    .movie-list thead td,
+    .movie-list thead th {
+        display: table-cell;
+        margin: 0;
+    }
+    /* Hide the labels in each cell */
+    .movie-list td .ui-table-cell-label,
+    .movie-list th .ui-table-cell-label {
+        display: none;
+    }
+}
+/* Hack to make IE9 and WP7.5 treat cells like block level elements */
+/* Applied in a max-width media query up to the table layout breakpoint so we don't need to negate this */
+@media ( max-width: 40em ) {
+    .movie-list td,
+    .movie-list th {
+        width: 100%;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        float: left;
+        clear: left;
+    }
+}
+
+/*
+ *map
+ *
+ * */
+
+.map{
+	height: 80%;
+  min-height:300px;
+}
+
+
+
+
+/*****************/
+/* CUSTOM ICONS */
+/***************/
+.ui-icon-edt:after {
+	background-image: url("../img/icons/emploidutemps-min.svg");
+	 /* Make your icon fit */
+    background-size: 18px 18px;
+}
+/* Fallback */
+.ui-nosvg .ui-icon-edt:after {
+	background-image: url("../img/icons/emploidutemps-min.png");
+	 /* Make your icon fit */
+    background-size: 18px 18px;
+}
+.ui-icon-ecole:after {
+	background-image: url("../img/icons/presentation-min.svg");
+	 /* Make your icon fit */
+    background-size: 18px 18px;
+}
+/* Fallback */
+.ui-nosvg .ui-icon-ecole:after {
+	background-image: url("../img/icons/presentation-min.png");
+	 /* Make your icon fit */
+    background-size: 18px 18px;
+}
+.ui-icon-reseau:after {
+	background-image: url("../img/icons/reseau-min.svg");
+	 /* Make your icon fit */
+    background-size: 18px 18px;
+}
+/* Fallback */
+.ui-nosvg .ui-icon-reseau:after {
+	background-image: url("../img/icons/reseau-min.png");
+	 /* Make your icon fit */
+    background-size: 18px 18px;
+}
+.ui-icon-book:after {
+	background-image: url("../img/icons/book.svg");
+	 /* Make your icon fit */
+    background-size: 18px 18px;
+}
+/* Fallback */
+.ui-nosvg .ui-icon-book:after {
+	background-image: url("../img/icons/bibi-min.png");
+	 /* Make your icon fit */
+    background-size: 18px 18px;
+}
+.ui-icon-book:after {
+	background-image: url("../img/icons/bibi-min.svg");
+	 /* Make your icon fit */
+    background-size: 18px 18px;
+}
+/* Fallback */
+.ui-nosvg .ui-icon-book:after {
+	background-image: url("../img/icons/book.png");
+	 /* Make your icon fit */
+    background-size: 18px 18px;
+}
+.ui-icon-sun:after {
+	background-image: url("../img/icons/meteo-min.svg");
+	 /* Make your icon fit */
+    background-size: 18px 18px;
+}
+/* Fallback */
+.ui-nosvg .ui-icon-sun:after {
+	background-image: url("../img/icons/meteo-min.png");
+	 /* Make your icon fit */
+    background-size: 18px 18px;
+}
+.ui-icon-wifi:after {
+	background-image: url("../img/icons/wif_smalli.svg");
+	 /* Make your icon fit */
+    background-size: 18px 18px;
+}
+/* Fallback */
+.ui-nosvg .ui-icon-wifi:after {
+	background-image: url("../img/icons/wif_smalli.png");
+	 /* Make your icon fit */
+    background-size: 18px 18px;
+}
+.ui-icon-cutlery:after {
+	background-image: url("../img/icons/cutlery.svg");
+	 /* Make your icon fit */
+    background-size: 18px 18px;
+}
+/* Fallback */
+.ui-nosvg .ui-icon-cutlery:after {
+	background-image: url("../img/icons/cutlery.png");
+	 /* Make your icon fit */
+    background-size: 18px 18px;
+}
+.ui-icon-rss:after {
+	background-image: url("../img/icons/rss.svg");
+	 /* Make your icon fit */
+    background-size: 18px 18px;
+}
+/* Fallback */
+.ui-nosvg .ui-icon-rss:after {
+	background-image: url("../img/icons/rss.png");
+	 /* Make your icon fit */
+    background-size: 18px 18px;
+}
+.ui-icon-plan:after {
+	background-image: url("../img/icons/plan-min.svg");
+	 /* Make your icon fit */
+    background-size: 18px 18px;
+}
+/* Fallback */
+.ui-nosvg .ui-icon-plan:after {
+	background-image: url("../img/icons/plan-min.png");
+	 /* Make your icon fit */
+    background-size: 18px 18px;
+}
+.ui-icon-home2:after {
+	background-image: url("../img/icons/home2.svg");
+	 /* Make your icon fit */
+    background-size: 18px 18px;
+}
+/* Fallback */
+.ui-nosvg .ui-icon-home2:after {
+	background-image: url("../img/icons/home2.png");
+	 /* Make your icon fit */
+    background-size: 18px 18px;
+}
+.ui-icon-ellipsis-v:after {
+	background-image: url("../img/icons/menu.svg");
+	 /* Make your icon fit */
+    background-size: 36px;
+}
+/* Fallback */
+.ui-nosvg .ui-icon-ellipsis-v:after {
+	background-image: url("../img/icons/menu.png");
+	 /* Make your icon fit */
+    background-size: 36px;
+}
+.ui-icon-facebook:after {
+	background-image: url("../img/icons/facebook.svg");
+	 /* Make your icon fit */
+    background-size: 36px;
+}
+/* Fallback */
+.ui-nosvg .ui-icon-facebook:after {
+	background-image: url("../img/icons/facebook.png");
+	 /* Make your icon fit */
+    background-size: 36px;
+}
+.ui-icon-youtube:after {
+	background-image: url("../img/icons/youtube.svg");
+	 /* Make your icon fit */
+    background-size: 36px;
+}
+/* Fallback */
+.ui-nosvg .ui-icon-youtube:after {
+	background-image: url("../img/icons/youtube.png");
+	 /* Make your icon fit */
+	
+    background-size: 36px;
+}
+.ui-icon-gohome:after {
+	background-image: url("../img/icons/maisonseule.svg");
+	 /* Make your icon fit */
+    background-size: 32px;
+}
+/* Fallback */
+.ui-nosvg .ui-icon-gohome:after {
+	background-image: url("../img/icons/maisonseule.png");
+	 /* Make your icon fit */
+    background-size: 32px;
+}
+.ui-icon-menudvp:after {
+	background-image: url("../img/icons/menudvp.svg");
+	 /* Make your icon fit */
+    background-size: 42px;
+}
+/* Fallback */
+.ui-nosvg .ui-icon-menudvp:after {
+	background-image: url("../img/icons/menudvp.svg");
+	 /* Make your icon fit */
+    background-size: 32px;
+}
+.ui-icon-bback:after {
+	background-image: url("../img/icons/bback.svg");
+	 /* Make your icon fit */
+    background-size: 32px;
+}
+/* Fallback */
+.ui-nosvg .ui-icon-bback:after {
+	background-image: url("../img/icons/bback.svg");
+	 /* Make your icon fit */
+    background-size: 32px;
+}
+
+
